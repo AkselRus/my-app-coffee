@@ -13,7 +13,7 @@ const NavBar = () => {
                             Main
                         </Link>
                     </li>
-                    {currentUser && (
+                    {/* {currentUser && (
                         <li className="nav-item">
                             <Link
                                 className="nav-link "
@@ -23,7 +23,7 @@ const NavBar = () => {
                                 Product
                             </Link>
                         </li>
-                    )}
+                    )} */}
                 </ul>
                 <div className="d-flex">
                     {currentUser ? (

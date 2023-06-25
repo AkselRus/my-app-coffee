@@ -8,9 +8,11 @@ import AuthProvider from "./hooks/useAuth";
 import ProtectedRoute from "./components/common/protectedRoute";
 import LogOut from "./layouts/logOut";
 import Users from "./layouts/users";
-import AddProduct from "./layouts/addProduct";
 import Product from "./components/page/products/product";
 import { ProductsProvider } from "./hooks/useProducts";
+import { CategoriesProvider } from "./hooks/useCategories";
+import AddProduct from "./components/ui/addProduct";
+import AdminPanel from "./components/ui/adminPanel";
 
 function App() {
     return (
@@ -19,19 +21,22 @@ function App() {
                 <NavBar />
                 <Switch>
                     <ProductsProvider>
-                        <ProtectedRoute
-                            path="/users/:userId?/:edit?"
-                            component={Users}
-                        />
-                        <Route
-                            path="/product/:productId?/:edit?"
-                            component={Product}
-                        />
-                        <Route path="/login/:type?" component={Login} />
-                        <Route path="/logout" component={LogOut} />
-                        <Route path="/add_product" component={AddProduct} />
-                        <Route path="/" exact component={Main} />
-                        <Redirect to="/" />
+                        <CategoriesProvider>
+                            <ProtectedRoute
+                                path="/users/:userId?/:edit?"
+                                component={Users}
+                            />
+                            <Route
+                                path="/product/:productId?/:edit?"
+                                component={Product}
+                            />
+                            <Route path="/login/:type?" component={Login} />
+                            <Route path="/logout" component={LogOut} />
+                            <Route path="/add" component={AddProduct} />
+                            <Route path="/admin" component={AdminPanel} />
+                            <Route path="/" exact component={Main} />
+                            <Redirect to="/" />
+                        </CategoriesProvider>
                     </ProductsProvider>
                 </Switch>
             </AuthProvider>

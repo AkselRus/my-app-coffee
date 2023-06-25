@@ -28,7 +28,7 @@ function NavProfile() {
                 <Link to="/logout" className="dropdown-item">
                     Log Out
                 </Link>
-                <Link to="/add_product" className="dropdown-item">
+                <Link to="/admin" className="dropdown-item">
                     Add Product
                 </Link>
             </div>

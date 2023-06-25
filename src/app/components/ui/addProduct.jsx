@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { validator } from "../utils/validator";
+import { validator } from "../../utils/validator";
 import { nanoid } from "nanoid";
-import TextField from "../components/common/form/textField";
-import productService from "../services/product.service";
+import TextField from "../common/form/textField";
+import productService from "../../services/product.service";
 import { useHistory } from "react-router-dom";
+import { useCategories } from "../../hooks/useCategories";
+import SelectField from "./selectField";
 // import { useProducts } from "../hooks/useProducts";
 
 const AddProduct = () => {
     const history = useHistory();
     // const { createProduct } = useProducts();
+    const { categories } = useCategories();
+    console.log(categories);
     const [data, setData] = useState({
         id: nanoid(),
         name: "",
         quantity: "",
+        categories: "67rdca3eeb7f6fgeed471818",
         description: "",
         price: "",
         image: "https://brend-mebel.ru/image/no_image.jpg"
     });
     const [errors, setErrors] = useState({});
-
+    const categoriesList = categories.map((q) => ({
+        label: q.name,
+        value: q.id
+    }));
     const handleChange = (target) => {
         setData((prevState) => ({
             ...prevState,
@@ -33,6 +41,11 @@ const AddProduct = () => {
             min: {
                 message: "Имя должно состоять минимум из 3 символов",
                 value: 3
+            }
+        },
+        description: {
+            isRequired: {
+                message: "Описание обязательно для заполнения"
             }
         },
         quantity: {
@@ -73,7 +86,7 @@ const AddProduct = () => {
     console.log(data);
     return (
         <form onSubmit={handleSubmit}>
-            <div>Add product</div>
+            <div className="text-center">Add product</div>
             <TextField
                 label="Имя"
                 name="name"
@@ -96,6 +109,15 @@ const AddProduct = () => {
                 onChange={handleChange}
                 error={errors.description}
             />
+            <SelectField
+                label="Выберите категорию продукта"
+                defaultOption="Choose..."
+                options={categoriesList}
+                name="categories"
+                onChange={handleChange}
+                value={data.categories}
+                error={errors.categories}
+            />
             <TextField
                 label="Стоимость товара"
                 type="number"
@@ -104,14 +126,14 @@ const AddProduct = () => {
                 onChange={handleChange}
                 error={errors.price}
             />
-            <TextField
+            {/* <TextField
                 label="Загрузите фотографию"
                 type="file"
                 name="image"
                 accept="image/png, image/jpeg"
                 onChange={handleChange}
                 error={errors.image}
-            />
+            /> */}
             <button
                 className="btn btn-primary w-100 mx-auto"
                 type="submit"

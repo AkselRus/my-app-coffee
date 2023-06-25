@@ -25,7 +25,6 @@ const AuthProvider = ({ children }) => {
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
     const history = useHistory();
-    console.log(process.env);
     async function logIn({ email, password }) {
         try {
             const { data } = await httpAuth.post(
