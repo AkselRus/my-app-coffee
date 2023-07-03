@@ -10,7 +10,7 @@ function NavProfile() {
     return (
         <div className="dropdown" onClick={toggleMenu}>
             <div className="btn dropdown-toggle d-flex align-items-center">
-                <div className="me-2">{currentUser.email}</div>
+                <div className="me-2 text-white">{currentUser.email}</div>
                 <img
                     src={currentUser.image}
                     alt=""

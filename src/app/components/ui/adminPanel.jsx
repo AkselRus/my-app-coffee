@@ -52,40 +52,73 @@ const AdminPanel = () => {
         // };
         const count = filteredProducts.length;
         return (
-            <div className="d-flex">
-                <div className="d-flex flex-column flex-shrink-0 p-2">
-                    <AddProduct />
-                </div>
-                <div className="d-flex flex-column">
-                    <input
-                        type="text"
-                        name="searchProd"
-                        placeholder="Search..."
-                        className="form-control"
-                        onChange={handleSearchProd}
-                        value={searchProd}
-                    />
-                    <ProductTable
-                        products={productCrop}
-                        onSort={handleSort}
-                        selectedSort={sortBy}
-                    />
-                    {/* <UserTable
-                            users={usersCrop}
-                            onSort={handleSort}
-                            selectedSort={sortBy}
-                            onDelete={handleDelete}
-                            onToggleBookMark={handleToggleBookMark}
-                        /> */}
-                    <div className="d-flex justify-content-center">
-                        <Paginate
-                            itemsCount={count}
-                            pageSize={pageSize}
-                            currentPage={currentPage}
-                            onPageChange={handlePageChange}
-                        />
+            <div>
+                <section className="h-100 h-custom">
+                    <div className="container py-5 h-100">
+                        <div className="row d-flex justify-content-center align-items-center h-100">
+                            <div className="col">
+                                <div className="card">
+                                    <div className="card-body p-4">
+                                        <div className="row">
+                                            <AddProduct />
+                                            <div className="col-lg-7">
+                                                <div className="card mb-3">
+                                                    <div className="card-body">
+                                                        <div className="justify-content-between">
+                                                            <div className="flex-row align-items-center">
+                                                                <div>
+                                                                    <input
+                                                                        type="text"
+                                                                        name="searchProd"
+                                                                        placeholder="Search..."
+                                                                        className="form-control"
+                                                                        onChange={
+                                                                            handleSearchProd
+                                                                        }
+                                                                        value={
+                                                                            searchProd
+                                                                        }
+                                                                    />
+                                                                    <ProductTable
+                                                                        products={
+                                                                            productCrop
+                                                                        }
+                                                                        onSort={
+                                                                            handleSort
+                                                                        }
+                                                                        selectedSort={
+                                                                            sortBy
+                                                                        }
+                                                                    />
+                                                                    <div className="d-flex justify-content-center">
+                                                                        <Paginate
+                                                                            itemsCount={
+                                                                                count
+                                                                            }
+                                                                            pageSize={
+                                                                                pageSize
+                                                                            }
+                                                                            currentPage={
+                                                                                currentPage
+                                                                            }
+                                                                            onPageChange={
+                                                                                handlePageChange
+                                                                            }
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
             </div>
         );
     }

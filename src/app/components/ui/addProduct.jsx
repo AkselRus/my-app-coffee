@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { validator } from "../../utils/validator";
 import { nanoid } from "nanoid";
 import TextField from "../common/form/textField";
+import TextAreaField from "../common/form/textAreaField";
 import productService from "../../services/product.service";
 import { useHistory } from "react-router-dom";
 import { useCategories } from "../../hooks/useCategories";
@@ -85,48 +86,51 @@ const AddProduct = () => {
     };
     console.log(data);
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="text-center">Add product</div>
-            <TextField
-                label="Имя"
-                name="name"
-                value={data.name}
-                onChange={handleChange}
-                error={errors.name}
-            />
-            <TextField
-                label="Количество товара"
-                name="quantity"
-                type="number"
-                value={data.quantity}
-                onChange={handleChange}
-                error={errors.quantity}
-            />
-            <TextField
-                label="Описание товара"
-                name="description"
-                value={data.description}
-                onChange={handleChange}
-                error={errors.description}
-            />
-            <SelectField
-                label="Выберите категорию продукта"
-                defaultOption="Choose..."
-                options={categoriesList}
-                name="categories"
-                onChange={handleChange}
-                value={data.categories}
-                error={errors.categories}
-            />
-            <TextField
-                label="Стоимость товара"
-                type="number"
-                name="price"
-                value={data.price}
-                onChange={handleChange}
-                error={errors.price}
-            />
-            {/* <TextField
+        <div className="col-lg-5">
+            <div className="card bg-body text-white rounded-3">
+                <div className="card-body">
+                    <form onSubmit={handleSubmit}>
+                        <div className="text-center">Add product</div>
+                        <TextField
+                            label="Имя"
+                            name="name"
+                            value={data.name}
+                            onChange={handleChange}
+                            error={errors.name}
+                        />
+                        <TextField
+                            label="Количество товара"
+                            name="quantity"
+                            type="number"
+                            value={data.quantity}
+                            onChange={handleChange}
+                            error={errors.quantity}
+                        />
+                        <TextAreaField
+                            label="Описание товара"
+                            name="description"
+                            value={data.description}
+                            onChange={handleChange}
+                            error={errors.description}
+                        />
+                        <SelectField
+                            label="Выберите категорию продукта"
+                            defaultOption="Choose..."
+                            options={categoriesList}
+                            name="categories"
+                            onChange={handleChange}
+                            value={data.categories}
+                            error={errors.categories}
+                        />
+                        <TextField
+                            label="Стоимость товара"
+                            type="number"
+                            name="price"
+                            value={data.price}
+                            onChange={handleChange}
+                            error={errors.price}
+                        />
+                        {/* <TextField
                 label="Загрузите фотографию"
                 type="file"
                 name="image"
@@ -134,14 +138,17 @@ const AddProduct = () => {
                 onChange={handleChange}
                 error={errors.image}
             /> */}
-            <button
-                className="btn btn-primary w-100 mx-auto"
-                type="submit"
-                disabled={!isValid}
-            >
-                Create
-            </button>
-        </form>
+                        <button
+                            className="btn btn-primary"
+                            type="submit"
+                            disabled={!isValid}
+                        >
+                            Create
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     );
 };
 

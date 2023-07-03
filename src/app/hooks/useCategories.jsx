@@ -28,7 +28,6 @@ export const CategoriesProvider = ({ children }) => {
         setError(message);
     }
     function getCategories(id) {
-        console.log(id);
         return categories.find((p) => p.id === id);
     }
 

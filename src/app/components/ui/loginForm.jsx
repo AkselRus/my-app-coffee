@@ -63,38 +63,58 @@ const LoginForm = () => {
         }
     };
     return (
-        <form onSubmit={handleSubmit}>
-            <TextField
-                label="Электронная почта"
-                name="email"
-                value={data.email}
-                onChange={handleChange}
-                error={errors.email}
-            />
-            <TextField
-                label="Пароль"
-                type="password"
-                name="password"
-                value={data.password}
-                onChange={handleChange}
-                error={errors.password}
-            />
-            <CheckBoxField
-                value={data.stayOn}
-                onChange={handleChange}
-                name="stayOn"
-            >
-                Оставаться в системе
-            </CheckBoxField>
-            {enterError && <p className="text-danger">{enterError}</p>}
-            <button
-                className="btn btn-primary w-100 mx-auto"
-                type="submit"
-                disabled={!isValid || enterError}
-            >
-                Submit
-            </button>
-        </form>
+        <>
+            <div className="align-items-center">
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col">
+                            <form
+                                className="bg-white  rounded-5 shadow-5-strong p-5"
+                                onSubmit={handleSubmit}
+                            >
+                                <TextField
+                                    label="Электронная почта"
+                                    name="email"
+                                    value={data.email}
+                                    onChange={handleChange}
+                                    error={errors.email}
+                                />
+                                <TextField
+                                    label="Пароль"
+                                    type="password"
+                                    name="password"
+                                    value={data.password}
+                                    onChange={handleChange}
+                                    error={errors.password}
+                                />
+                                <div className="row mb-4">
+                                    <div className="col d-flex justify-content-start">
+                                        <CheckBoxField
+                                            value={data.stayOn}
+                                            onChange={handleChange}
+                                            name="stayOn"
+                                        >
+                                            Оставаться в системе
+                                        </CheckBoxField>
+                                    </div>
+                                </div>
+
+                                {enterError && (
+                                    <p className="text-danger">{enterError}</p>
+                                )}
+                                <button
+                                    className="btn btn-primary w-100"
+                                    type="submit"
+                                    disabled={!isValid || enterError}
+                                >
+                                    Submit
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 };
 

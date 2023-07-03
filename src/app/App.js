@@ -13,6 +13,7 @@ import { ProductsProvider } from "./hooks/useProducts";
 import { CategoriesProvider } from "./hooks/useCategories";
 import AddProduct from "./components/ui/addProduct";
 import AdminPanel from "./components/ui/adminPanel";
+import ShopingCarts from "./components/ui/shopingCarts";
 
 function App() {
     return (
@@ -34,6 +35,7 @@ function App() {
                             <Route path="/logout" component={LogOut} />
                             <Route path="/add" component={AddProduct} />
                             <Route path="/admin" component={AdminPanel} />
+                            <Route path="/cart" component={ShopingCarts} />
                             <Route path="/" exact component={Main} />
                             <Redirect to="/" />
                         </CategoriesProvider>
