@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import UserCard from "../../ui/userCard";
-import { useUser } from "../../../hooks/useUsers";
+import { useSelector } from "react-redux";
+import { getUser } from "../../../store/users";
 
 const UserPage = ({ userId }) => {
-    const { getUserById } = useUser();
-    const user = getUserById(userId);
+    console.log(userId);
+    const user = useSelector(getUser());
 
     if (user) {
         return (

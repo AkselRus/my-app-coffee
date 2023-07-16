@@ -1,8 +1,9 @@
 import React from "react";
-import { useAuth } from "../../../hooks/useAuth";
+import { useSelector } from "react-redux";
+import { getCurrentUserData } from "../../../store/users";
 
 const UserImage = () => {
-    const { currentUser } = useAuth();
+    const currentUser = useSelector(getCurrentUserData());
     return (
         <div>
             <img

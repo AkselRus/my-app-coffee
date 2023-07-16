@@ -3,18 +3,17 @@ import { validator } from "../../utils/validator";
 import TextField from "../common/form/textField";
 import RadioField from "../common/form/radioField";
 import CheckBoxField from "../common/form/checkBoxField";
-import { useAuth } from "../../hooks/useAuth";
-import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../store/users";
 
 const UserData = () => {
-    const history = useHistory();
+    const dispatch = useDispatch();
     const [data, setData] = useState({
         name: "",
         image: "",
         sex: "male",
         licence: false
     });
-    const { signUp } = useAuth();
     const [errors, setErrors] = useState({});
 
     const handleChange = (target) => {
@@ -78,12 +77,7 @@ const UserData = () => {
         const isValid = validate();
         if (!isValid) return;
         console.log(data);
-        try {
-            await signUp(data);
-            history.push("/");
-        } catch (error) {
-            setErrors(error);
-        }
+        dispatch(signUp(data));
     };
 
     return (

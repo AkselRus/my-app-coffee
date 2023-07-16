@@ -73,9 +73,8 @@ const ProductTable = ({ products, onSort, selectedSort }) => {
 
 ProductTable.propTypes = {
     products: PropTypes.array.isRequired,
-    onSort: PropTypes.func.isRequired,
-    selectedSort: PropTypes.object.isRequired,
-    onToggleBookMark: PropTypes.func.isRequired
+    onSort: PropTypes.func,
+    selectedSort: PropTypes.object
 };
 
 export default ProductTable;

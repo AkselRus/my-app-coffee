@@ -3,17 +3,14 @@ import { validator } from "../../utils/validator";
 import { nanoid } from "nanoid";
 import TextField from "../common/form/textField";
 import TextAreaField from "../common/form/textAreaField";
-import productService from "../../services/product.service";
-import { useHistory } from "react-router-dom";
-import { useCategories } from "../../hooks/useCategories";
 import SelectField from "./selectField";
-// import { useProducts } from "../hooks/useProducts";
+import { useDispatch, useSelector } from "react-redux";
+import { createProduct } from "../../store/products";
+import { getCategories } from "../../store/categories";
 
 const AddProduct = () => {
-    const history = useHistory();
-    // const { createProduct } = useProducts();
-    const { categories } = useCategories();
-    console.log(categories);
+    const dispatch = useDispatch();
+    const categories = useSelector(getCategories());
     const [data, setData] = useState({
         id: nanoid(),
         name: "",
@@ -74,17 +71,8 @@ const AddProduct = () => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        console.log(data);
-        try {
-            console.log(data);
-            await productService.create(data);
-            // await createProduct(data);
-            history.push("/");
-        } catch (error) {
-            setErrors(error);
-        }
+        dispatch(createProduct(data));
     };
-    console.log(data);
     return (
         <div className="col-lg-5">
             <div className="card bg-body text-white rounded-3">
@@ -92,7 +80,7 @@ const AddProduct = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="text-center">Add product</div>
                         <TextField
-                            label="Имя"
+                            label="Название товара"
                             name="name"
                             value={data.name}
                             onChange={handleChange}
@@ -114,7 +102,7 @@ const AddProduct = () => {
                             error={errors.description}
                         />
                         <SelectField
-                            label="Выберите категорию продукта"
+                            label="Выберите категорию товара"
                             defaultOption="Choose..."
                             options={categoriesList}
                             name="categories"

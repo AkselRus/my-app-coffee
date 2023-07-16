@@ -1,6 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { getUser } from "../../store/users";
+import CartProduct from "./cartProduct";
 
 const ShopingCarts = () => {
+    const currentUser = useSelector(getUser());
+    const shopingCart = currentUser.purchases;
+    console.log(currentUser);
     return (
         <div>
             <section className="h-100 h-custom">
@@ -28,8 +34,7 @@ const ShopingCarts = () => {
                                                         Shopping cart
                                                     </p>
                                                     <p className="mb-0">
-                                                        You have 4 items in your
-                                                        cart
+                                                        {`You have ${shopingCart.length} items in your cart`}
                                                     </p>
                                                 </div>
                                                 <div>
@@ -47,186 +52,15 @@ const ShopingCarts = () => {
                                                     </p>
                                                 </div>
                                             </div>
-
-                                            <div className="card mb-3">
-                                                <div className="card-body">
-                                                    <div className="d-flex justify-content-between">
-                                                        <div className="d-flex flex-row align-items-center">
-                                                            <div>
-                                                                <img
-                                                                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                                                    className="img-fluid rounded-3"
-                                                                    alt="Shopping item"
-                                                                    width="65"
-                                                                />
-                                                            </div>
-                                                            <div className="ms-3">
-                                                                <h5>
-                                                                    Iphone 11
-                                                                    pro
-                                                                </h5>
-                                                                <p className="small mb-0">
-                                                                    256GB, Navy
-                                                                    Blue
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="d-flex flex-row align-items-center">
-                                                            <div width="50">
-                                                                <h5 className="fw-normal mb-0">
-                                                                    2
-                                                                </h5>
-                                                            </div>
-                                                            <div width="80">
-                                                                <h5 className="mb-0">
-                                                                    $900
-                                                                </h5>
-                                                            </div>
-                                                            <a
-                                                                href="#!"
-                                                                color="#cecece"
-                                                            >
-                                                                <i className="fas fa-trash-alt"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="card mb-3">
-                                                <div className="card-body">
-                                                    <div className="d-flex justify-content-between">
-                                                        <div className="d-flex flex-row align-items-center">
-                                                            <div>
-                                                                <img
-                                                                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img2.webp"
-                                                                    className="img-fluid rounded-3"
-                                                                    alt="Shopping item"
-                                                                    width="65"
-                                                                />
-                                                            </div>
-                                                            <div className="ms-3">
-                                                                <h5>
-                                                                    Samsung
-                                                                    galaxy Note
-                                                                    10{" "}
-                                                                </h5>
-                                                                <p className="small mb-0">
-                                                                    256GB, Navy
-                                                                    Blue
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="d-flex flex-row align-items-center">
-                                                            <div width="50">
-                                                                <h5 className="fw-normal mb-0">
-                                                                    2
-                                                                </h5>
-                                                            </div>
-                                                            <div width="80">
-                                                                <h5 className="mb-0">
-                                                                    $900
-                                                                </h5>
-                                                            </div>
-                                                            <a
-                                                                href="#!"
-                                                                color="#cecece"
-                                                            >
-                                                                <i className="fas fa-trash-alt"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="card mb-3">
-                                                <div className="card-body">
-                                                    <div className="d-flex justify-content-between">
-                                                        <div className="d-flex flex-row align-items-center">
-                                                            <div>
-                                                                <img
-                                                                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img3.webp"
-                                                                    className="img-fluid rounded-3"
-                                                                    alt="Shopping item"
-                                                                    width="65"
-                                                                />
-                                                            </div>
-                                                            <div className="ms-3">
-                                                                <h5>
-                                                                    Canon EOS
-                                                                    M50
-                                                                </h5>
-                                                                <p className="small mb-0">
-                                                                    Onyx Black
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="d-flex flex-row align-items-center">
-                                                            <div width="50">
-                                                                <h5 className="fw-normal mb-0">
-                                                                    1
-                                                                </h5>
-                                                            </div>
-                                                            <div width="80">
-                                                                <h5 className="mb-0">
-                                                                    $1199
-                                                                </h5>
-                                                            </div>
-                                                            <a
-                                                                href="#!"
-                                                                color="#cecece"
-                                                            >
-                                                                <i className="fas fa-trash-alt"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="card mb-3 mb-lg-0">
-                                                <div className="card-body">
-                                                    <div className="d-flex justify-content-between">
-                                                        <div className="d-flex flex-row align-items-center">
-                                                            <div>
-                                                                <img
-                                                                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img4.webp"
-                                                                    className="img-fluid rounded-3"
-                                                                    alt="Shopping item"
-                                                                    width="65"
-                                                                />
-                                                            </div>
-                                                            <div className="ms-3">
-                                                                <h5>
-                                                                    MacBook Pro
-                                                                </h5>
-                                                                <p className="small mb-0">
-                                                                    1TB,
-                                                                    Graphite
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="d-flex flex-row align-items-center">
-                                                            <div width="50">
-                                                                <h5 className="fw-normal mb-0">
-                                                                    1
-                                                                </h5>
-                                                            </div>
-                                                            <div width="80">
-                                                                <h5 className="mb-0">
-                                                                    $1799
-                                                                </h5>
-                                                            </div>
-                                                            <a
-                                                                href="#!"
-                                                                color="#cecece"
-                                                            >
-                                                                <i className="fas fa-trash-alt"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            {shopingCart &&
+                                                shopingCart.map((prod) => (
+                                                    <CartProduct
+                                                        key={prod.id}
+                                                        item={prod}
+                                                    />
+                                                ))}
                                         </div>
+
                                         <div className="col-lg-5">
                                             <div className="card bg-primary text-white rounded-3">
                                                 <div className="card-body">
@@ -235,7 +69,9 @@ const ShopingCarts = () => {
                                                             Card details
                                                         </h5>
                                                         <img
-                                                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+                                                            src={
+                                                                currentUser.image
+                                                            }
                                                             className="img-fluid rounded-3"
                                                             width="45"
                                                             alt="Avatar"
@@ -334,7 +170,7 @@ const ShopingCarts = () => {
                                                                 <div className="form-outline form-white">
                                                                     <input
                                                                         type="password"
-                                                                        id="typeText"
+                                                                        id="typeTextPass"
                                                                         className="form-control form-control-lg"
                                                                         placeholder="&#9679;&#9679;&#9679;"
                                                                         size="1"
@@ -343,7 +179,7 @@ const ShopingCarts = () => {
                                                                     />
                                                                     <label
                                                                         className="form-label"
-                                                                        htmlFor="typeText"
+                                                                        htmlFor="typeTextPass"
                                                                     >
                                                                         Cvv
                                                                     </label>

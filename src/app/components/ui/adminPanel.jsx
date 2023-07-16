@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import _ from "lodash";
 import { paginate } from "../../utils/paginate";
-import { useProducts } from "../../hooks/useProducts";
 import Paginate from "./pagination";
 import AddProduct from "./addProduct";
 import ProductTable from "./productTable";
+import { useSelector } from "react-redux";
+import { getProductsList } from "../../store/products";
 
 const AdminPanel = () => {
-    const { products } = useProducts();
+    const products = useSelector(getProductsList());
     console.log(products);
     const [searchProd, setSearchProd] = useState("");
     const [selectedCategory, setSelectedCategory] = useState();

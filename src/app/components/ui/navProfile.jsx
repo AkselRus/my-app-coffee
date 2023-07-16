@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { getUser } from "../../store/users";
 function NavProfile() {
-    const { currentUser } = useAuth();
+    const currentUser = useSelector(getUser());
     const [isOpen, setOpen] = useState(false);
     const toggleMenu = () => {
         setOpen((prevState) => !prevState);

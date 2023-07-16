@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { useProducts } from "../../hooks/useProducts";
 import Product from "../page/products/product";
 import NavProduct from "./navProduct";
-import { useCategories } from "../../hooks/useCategories";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories } from "../../store/categories";
+import { getProductsList } from "../../store/products";
+import { addInCartBy } from "../../store/users";
 
 const MainPage = () => {
-    const { products } = useProducts();
-    const { categories } = useCategories();
+    const dispatch = useDispatch();
+    const products = useSelector(getProductsList());
+    const categories = useSelector(getCategories());
 
     const [searchProd, setSearchProd] = useState("");
     const [selectedCateg, setSelectedCateg] = useState();
 
-    const handleProfessionSelect = (item) => {
+    const handleCategorySelect = (item) => {
         if (searchProd !== "") setSearchProd("");
         setSelectedCateg(item);
     };
@@ -22,6 +25,10 @@ const MainPage = () => {
     const clearFilter = () => {
         setSelectedCateg();
     };
+    const handleClickPay = (data) => {
+        console.log(data);
+        dispatch(addInCartBy(data));
+    };
     const filterProd =
         selectedCateg &&
         products.filter((prod) => prod.categories === selectedCateg.id);
@@ -30,16 +37,6 @@ const MainPage = () => {
 
     return (
         <>
-            {categories && (
-                <div className="d-flex flex-column flex-shrink-0 p-3">
-                    <NavProduct
-                        items={categories}
-                        onItemSelect={handleProfessionSelect}
-                        selectedItem={selectedCateg}
-                        onClick={clearFilter}
-                    />
-                </div>
-            )}
             {/* menu */}
             <main className="container">
                 <div className="d-flex align-items-center p-3 my-3 text-white bg-dark rounded shadow-sm">
@@ -59,17 +56,34 @@ const MainPage = () => {
                     />
                 </div>
 
+                {categories && (
+                    <div className="d-flex flex-column flex-shrink-0 p-3">
+                        <NavProduct
+                            items={categories}
+                            onItemSelect={handleCategorySelect}
+                            selectedItem={selectedCateg}
+                            onClick={clearFilter}
+                        />
+                    </div>
+                )}
+
                 <div className="my-3 p-3 bg-body text-white rounded shadow-sm">
                     <h6 className="border-bottom pb-2 mb-0">Предложения</h6>
 
                     {newProducts
                         ? newProducts.map((p) => (
-                              <Product key={p.id} data={p} />
+                              <Product
+                                  key={p.id}
+                                  data={p}
+                                  onClick={handleClickPay}
+                              />
                           ))
                         : "Loading..."}
 
                     <small className="d-block text-end mt-3">
-                        <a href="#">Все предложения</a>
+                        <a onClick={() => setSelectedCateg()}>
+                            Все предложения
+                        </a>
                     </small>
                 </div>
             </main>

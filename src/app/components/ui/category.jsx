@@ -1,10 +1,10 @@
 import React from "react";
-import { useCategories } from "../../hooks/useCategories";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { getCategoryById } from "../../store/categories";
 
 const Category = ({ id }) => {
-    const { getCategories } = useCategories();
-    const categori = getCategories(id);
+    const categori = useSelector(getCategoryById(id));
 
     if (categori.name === "Напитки") {
         return (
