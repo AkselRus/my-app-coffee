@@ -4,7 +4,7 @@ import NavProduct from "./navProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../../store/categories";
 import { getProductsList } from "../../store/products";
-import { addInCartBy } from "../../store/users";
+import { addInCartBy } from "../../store/cart";
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -26,8 +26,7 @@ const MainPage = () => {
         setSelectedCateg();
     };
     const handleClickPay = (data) => {
-        console.log(data);
-        dispatch(addInCartBy(data));
+        dispatch(addInCartBy({ prodId: data.id, count: 1 }));
     };
     const filterProd =
         selectedCateg &&

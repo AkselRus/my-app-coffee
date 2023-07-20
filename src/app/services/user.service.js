@@ -2,6 +2,7 @@ import httpService from "./http.service";
 import localStorageService from "./localStorage.service";
 
 const userEndpoint = "user/";
+const userId = localStorageService.getUserId();
 
 const userService = {
     get: async () => {
@@ -16,18 +17,27 @@ const userService = {
         return data;
     },
     getCurrentUser: async () => {
-        const { data } = await httpService.get(
-            userEndpoint + localStorageService.getUserId()
-        );
+        const { data } = await httpService.get(userEndpoint + userId);
         return data;
     },
     update: async (payload) => {
-        console.log("userService", payload);
         const { data } = await httpService.patch(
             userEndpoint + payload._id,
             payload
         );
-        console.log("update data", data);
+        return data;
+    },
+    addCart: async (payload) => {
+        const { data } = await httpService.patch(
+            userEndpoint + payload._id + "purchases",
+            payload
+        );
+        return data;
+    },
+    getCart: async () => {
+        const { data } = await httpService.get(
+            userEndpoint + userId + "purchases"
+        );
         return data;
     }
 };

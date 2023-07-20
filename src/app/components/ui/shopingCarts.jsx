@@ -5,8 +5,8 @@ import CartProduct from "./cartProduct";
 
 const ShopingCarts = () => {
     const currentUser = useSelector(getUser());
-    const shopingCart = currentUser.purchases;
-    console.log(currentUser);
+    const shopingCart = currentUser?.purchases;
+    if (shopingCart) return "Корзина пуста";
     return (
         <div>
             <section className="h-100 h-custom">
@@ -34,7 +34,10 @@ const ShopingCarts = () => {
                                                         Shopping cart
                                                     </p>
                                                     <p className="mb-0">
-                                                        {`You have ${shopingCart.length} items in your cart`}
+                                                        {`You have ${
+                                                            shopingCart?.length ||
+                                                            "0"
+                                                        } items in your cart`}
                                                     </p>
                                                 </div>
                                                 <div>
