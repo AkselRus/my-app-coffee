@@ -1,12 +1,40 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../store/users";
 import CartProduct from "./cartProduct";
+import {
+    countDecrement,
+    countIncrement,
+    getCartLoadingStatus,
+    getShopList,
+    removeProdCart
+} from "../../store/cart";
+import SpinerLoader from "../SpinerLoader";
 
 const ShopingCarts = () => {
+    const dispatch = useDispatch();
     const currentUser = useSelector(getUser());
-    const shopingCart = currentUser?.purchases;
-    if (shopingCart) return "Корзина пуста";
+    const shopStatus = useSelector(getCartLoadingStatus());
+    const shopList = useSelector(getShopList());
+    console.log("shopList", shopList);
+    console.log("shopStatus", shopStatus);
+
+    const handleIncrement = (id) => {
+        console.log("handleIncrement", id);
+        dispatch(countIncrement(id));
+    };
+    const handleDecrement = (id) => {
+        console.log("handleDecrement", id);
+        dispatch(countDecrement(id));
+    };
+
+    const handleDelete = (id) => {
+        dispatch(removeProdCart(id));
+        console.log(id);
+    };
+
+    if (shopList?.length === 0) return "Корзина пуста";
+
     return (
         <div>
             <section className="h-100 h-custom">
@@ -19,11 +47,11 @@ const ShopingCarts = () => {
                                         <div className="col-lg-7">
                                             <h5 className="mb-3">
                                                 <a
-                                                    href=""
+                                                    href="/"
                                                     className="text-body"
                                                 >
                                                     <i className="fas fa-long-arrow-alt-left me-2"></i>
-                                                    Continue shopping
+                                                    Back to Main Page
                                                 </a>
                                             </h5>
                                             <hr />
@@ -35,7 +63,7 @@ const ShopingCarts = () => {
                                                     </p>
                                                     <p className="mb-0">
                                                         {`You have ${
-                                                            shopingCart?.length ||
+                                                            shopList?.length ||
                                                             "0"
                                                         } items in your cart`}
                                                     </p>
@@ -55,13 +83,23 @@ const ShopingCarts = () => {
                                                     </p>
                                                 </div>
                                             </div>
-                                            {shopingCart &&
-                                                shopingCart.map((prod) => (
+                                            {shopList && !shopStatus ? (
+                                                shopList.map((prod) => (
                                                     <CartProduct
-                                                        key={prod.id}
+                                                        key={prod.prodId}
                                                         item={prod}
+                                                        increment={
+                                                            handleIncrement
+                                                        }
+                                                        decrement={
+                                                            handleDecrement
+                                                        }
+                                                        onClick={handleDelete}
                                                     />
-                                                ))}
+                                                ))
+                                            ) : (
+                                                <SpinerLoader />
+                                            )}
                                         </div>
 
                                         <div className="col-lg-5">

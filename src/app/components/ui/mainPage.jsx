@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../../store/categories";
 import { getProductsList } from "../../store/products";
 import { addInCartBy } from "../../store/cart";
+import BreadCrumb from "./BreadCrumb";
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -41,12 +42,11 @@ const MainPage = () => {
                 <div className="d-flex align-items-center p-3 my-3 text-white bg-dark rounded shadow-sm">
                     <img
                         className="me-3"
-                        src="https://i.pinimg.com/originals/8c/10/a1/8c10a12a0210244b0e66bf20668d6fc5.png"
+                        src="/docs/4.4/assets/brand/bootstrap-solid.svg"
                         alt=""
                         width="48"
                         height="48"
                     />
-                    <div className="lh-1"></div>
                     <input
                         className="form-control form-control-dark bg-dark text-white border-0"
                         type="text"
@@ -67,7 +67,8 @@ const MainPage = () => {
                 )}
 
                 <div className="my-3 p-3 bg-body text-white rounded shadow-sm">
-                    <h6 className="border-bottom pb-2 mb-0">Предложения</h6>
+                    {/* <h6 className="border-bottom pb-2 mb-0">Предложения</h6> */}
+                    <BreadCrumb />
 
                     {newProducts
                         ? newProducts.map((p) => (

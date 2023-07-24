@@ -4,8 +4,9 @@ import { useSelector } from "react-redux";
 import { getProductById } from "../../store/products";
 import { getCategoryById } from "../../store/categories";
 
-const CartProduct = ({ item }) => {
-    const prod = useSelector(getProductById(item.id));
+const CartProduct = ({ item, onClick, increment, decrement }) => {
+    console.log("item", item);
+    const prod = useSelector(getProductById(item.prodId));
     const category = useSelector(getCategoryById(prod?.categories));
     return (
         prod &&
@@ -36,22 +37,25 @@ const CartProduct = ({ item }) => {
                                 <button
                                     type="button"
                                     className="btn btn-outline-secondary btn-sm"
+                                    onClick={() => increment(prod.id)}
                                 >
-                                    -
+                                    +
                                 </button>
-
                                 <input
                                     className="w-25"
                                     min="0"
                                     name="quantity"
-                                    defaultValue={item.count}
+                                    value={item && item.count}
+                                    readOnly={true}
+                                    // defaultValue={item.count}
                                     type="text"
                                 />
                                 <button
                                     type="button"
                                     className="btn btn-outline-secondary btn-sm"
+                                    onClick={() => decrement(prod.id)}
                                 >
-                                    +
+                                    -
                                 </button>
                             </div>
 
@@ -59,7 +63,11 @@ const CartProduct = ({ item }) => {
                                 <div width="80" className="mb-1">
                                     <h5 className="mb-0">{prod.price}</h5>
                                 </div>
-                                <a type="button" className="p-3 mb-0">
+                                <a
+                                    type="button"
+                                    className="p-3 mb-0"
+                                    onClick={() => onClick(prod.id)}
+                                >
                                     <i
                                         className="btn btn-danger btn-sm bi bi-x-lg text-white"
                                         role="button"
@@ -75,6 +83,8 @@ const CartProduct = ({ item }) => {
 };
 CartProduct.propTypes = {
     item: PropTypes.object,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    increment: PropTypes.func,
+    decrement: PropTypes.func
 };
 export default CartProduct;

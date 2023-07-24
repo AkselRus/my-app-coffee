@@ -8,8 +8,10 @@ const UsersLoader = ({ children }) => {
     const dispatch = useDispatch();
     useEffect(() => {
         if (!dataStatus) dispatch(loadUsersList());
-    }, []);
-    if (!dataStatus) return "Loading";
+    }, [dispatch]);
+    if (!dataStatus) {
+        return "Loading...";
+    }
     return children;
 };
 UsersLoader.propTypes = {

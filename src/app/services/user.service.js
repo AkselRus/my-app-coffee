@@ -28,15 +28,22 @@ const userService = {
         return data;
     },
     addCart: async (payload) => {
-        const { data } = await httpService.patch(
-            userEndpoint + payload._id + "purchases",
+        console.log(payload);
+        const { data } = await httpService.put(
+            userEndpoint + userId + "/purchases/" + payload.prodId,
             payload
         );
         return data;
     },
     getCart: async () => {
         const { data } = await httpService.get(
-            userEndpoint + userId + "purchases"
+            userEndpoint + userId + "/purchases"
+        );
+        return data;
+    },
+    deleteItemPurchases: async (payload) => {
+        const { data } = await httpService.delete(
+            userEndpoint + userId + "/purchases/" + payload
         );
         return data;
     }
