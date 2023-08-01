@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import _ from "lodash";
-import { paginate } from "../../utils/paginate";
-import Paginate from "./pagination";
+import { paginate } from "../../../utils/paginate";
+import Paginate from "../pagination";
 import AddProduct from "./addProduct";
-import ProductTable from "./productTable";
+import ProductTable from "../../page/products/productTable";
 import { useSelector } from "react-redux";
-import { getProductsList } from "../../store/products";
+import { getProductsList } from "../../../store/products";
+import SpinerLoader from "../../SpinerLoader";
 
 const AdminPanel = () => {
     const products = useSelector(getProductsList());
-    console.log(products);
     const [searchProd, setSearchProd] = useState("");
     const [selectedCategory, setSelectedCategory] = useState();
     const [sortBy, setSortBy] = useState({ path: "name", order: "asc" });
@@ -123,7 +123,7 @@ const AdminPanel = () => {
             </div>
         );
     }
-    return "Loading...";
+    return <SpinerLoader />;
 };
 
 export default AdminPanel;

@@ -3,24 +3,29 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 // Components
-import Card from "../components/Card";
 
 // Store
-import { isLoggedInSelector } from "../store/authSlice";
+import { getIsLoggedIn } from "../store/users";
 
 const AuthLayout = () => {
     // let { path } = useRouteMatch();
-    const isLoggedIn = useSelector(isLoggedInSelector());
+    const isLoggedIn = useSelector(getIsLoggedIn());
 
     if (isLoggedIn) {
-        return <Navigate to='/' />;
+        return <Navigate to="/" />;
     }
 
     return (
-        <div className='flex grow flex-col justify-center items-center  dark:text-slate-200 '>
-            <Card>
-                <Outlet />
-            </Card>
+        <div className="">
+            <div className="container mt-5">
+                <div className="row">
+                    <div className="col-md-6 offset-md-3 shadow p-4">
+                        <div className="flex grow flex-col justify-center items-center  dark:text-slate-200 ">
+                            <Outlet />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

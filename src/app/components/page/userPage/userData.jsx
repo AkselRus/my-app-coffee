@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { validator } from "../../utils/validator";
-import TextField from "../common/form/textField";
-import RadioField from "../common/form/radioField";
-import CheckBoxField from "../common/form/checkBoxField";
+import { validator } from "../../../utils/validator";
+import TextField from "../../common/form/textField";
+import RadioField from "../../common/form/radioField";
+import CheckBoxField from "../../common/form/checkBoxField";
 import { useDispatch } from "react-redux";
-import { signUp } from "../../store/users";
+import { signUp } from "../../../store/users";
 
 const UserData = () => {
     const dispatch = useDispatch();
@@ -76,7 +76,6 @@ const UserData = () => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        console.log(data);
         dispatch(signUp(data));
     };
 

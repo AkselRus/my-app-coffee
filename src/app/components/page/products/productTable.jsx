@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Table from "../page/table";
+import Table from "../table";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
-import Category from "./category";
+import Category from "../../ui/category";
 // import { Link } from "react-router-dom";
 
 const ProductTable = ({ products, onSort, selectedSort }) => {

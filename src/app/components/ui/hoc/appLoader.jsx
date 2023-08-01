@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -9,6 +9,7 @@ import {
 import { loadCategoriesList } from "../../../store/categories";
 import { loadproductsList } from "../../../store/products";
 import { loadCartList } from "../../../store/cart";
+import SpinerLoader from "../../SpinerLoader";
 
 const AppLoader = ({ children }) => {
     const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const AppLoader = ({ children }) => {
         }
     }, []);
 
-    if (usersStatusLoading) return "Loading";
+    if (usersStatusLoading) return <SpinerLoader />;
     return children;
 };
 AppLoader.propTypes = {

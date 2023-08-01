@@ -1,44 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../store/users";
+import { getUser } from "../../../store/users";
 import CartProduct from "./cartProduct";
 import {
-    countDecrement,
-    countIncrement,
     getCartLoadingStatus,
     getShopList,
+    loadCartList,
     removeProdCart
-} from "../../store/cart";
-import SpinerLoader from "../SpinerLoader";
+} from "../../../store/cart";
+import SpinerLoader from "../../SpinerLoader";
+import Total from "./Total";
+import CardType from "./CardType";
+import SortBy from "../SortBy";
+import Search from "../Search";
 
 const ShopingCarts = () => {
     const dispatch = useDispatch();
     const currentUser = useSelector(getUser());
     const shopStatus = useSelector(getCartLoadingStatus());
-    const shopList = useSelector(getShopList());
-    console.log("shopList", shopList);
-    console.log("shopStatus", shopStatus);
 
-    const handleIncrement = (id) => {
-        console.log("handleIncrement", id);
-        dispatch(countIncrement(id));
-    };
-    const handleDecrement = (id) => {
-        console.log("handleDecrement", id);
-        dispatch(countDecrement(id));
-    };
+    const shopList = useSelector(getShopList());
+
+    useEffect(() => {
+        if (!shopStatus) {
+            dispatch(loadCartList());
+        }
+    }, [shopList?.length]);
 
     const handleDelete = (id) => {
         dispatch(removeProdCart(id));
-        console.log(id);
     };
-
-    if (shopList?.length === 0) return "Корзина пуста";
+    if (shopStatus) return <SpinerLoader />;
 
     return (
         <div>
             <section className="h-100 h-custom">
                 <div className="container py-5 h-100">
+                    <Search />
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col">
                             <div className="card">
@@ -56,50 +54,20 @@ const ShopingCarts = () => {
                                             </h5>
                                             <hr />
 
-                                            <div className="d-flex justify-content-between align-items-center mb-4">
-                                                <div>
-                                                    <p className="mb-1">
-                                                        Shopping cart
-                                                    </p>
-                                                    <p className="mb-0">
-                                                        {`You have ${
-                                                            shopList?.length ||
-                                                            "0"
-                                                        } items in your cart`}
-                                                    </p>
-                                                </div>
-                                                <div>
-                                                    <p className="mb-0">
-                                                        <span className="text-muted">
-                                                            Sort by:
-                                                        </span>{" "}
-                                                        <a
-                                                            href="#!"
-                                                            className="text-body"
-                                                        >
-                                                            price{" "}
-                                                            <i className="fas fa-angle-down mt-1"></i>
-                                                        </a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            {shopList && !shopStatus ? (
-                                                shopList.map((prod) => (
-                                                    <CartProduct
-                                                        key={prod.prodId}
-                                                        item={prod}
-                                                        increment={
-                                                            handleIncrement
-                                                        }
-                                                        decrement={
-                                                            handleDecrement
-                                                        }
-                                                        onClick={handleDelete}
-                                                    />
-                                                ))
-                                            ) : (
-                                                <SpinerLoader />
-                                            )}
+                                            <SortBy
+                                                arr={shopList}
+                                                label="Shoping cart"
+                                            />
+
+                                            {shopList && shopList?.length !== 0
+                                                ? shopList.map((prod) => (
+                                                      <CartProduct
+                                                          key={prod.prodId}
+                                                          item={prod}
+                                                          onClick={handleDelete}
+                                                      />
+                                                  ))
+                                                : "Корзина пуста"}
                                         </div>
 
                                         <div className="col-lg-5">
@@ -119,37 +87,7 @@ const ShopingCarts = () => {
                                                         />
                                                     </div>
 
-                                                    <p className="small mb-2">
-                                                        Card type
-                                                    </p>
-                                                    <a
-                                                        href="#!"
-                                                        type="submit"
-                                                        className="text-white"
-                                                    >
-                                                        <i className="fab fa-cc-mastercard fa-2x me-2"></i>
-                                                    </a>
-                                                    <a
-                                                        href="#!"
-                                                        type="submit"
-                                                        className="text-white"
-                                                    >
-                                                        <i className="fab fa-cc-visa fa-2x me-2"></i>
-                                                    </a>
-                                                    <a
-                                                        href="#!"
-                                                        type="submit"
-                                                        className="text-white"
-                                                    >
-                                                        <i className="fab fa-cc-amex fa-2x me-2"></i>
-                                                    </a>
-                                                    <a
-                                                        href="#!"
-                                                        type="submit"
-                                                        className="text-white"
-                                                    >
-                                                        <i className="fab fa-cc-paypal fa-2x"></i>
-                                                    </a>
+                                                    <CardType />
 
                                                     <form className="mt-4">
                                                         <div className="form-outline form-white mb-4">
@@ -231,47 +169,7 @@ const ShopingCarts = () => {
 
                                                     <hr className="my-4" />
 
-                                                    <div className="d-flex justify-content-between">
-                                                        <p className="mb-2">
-                                                            Subtotal
-                                                        </p>
-                                                        <p className="mb-2">
-                                                            $4798.00
-                                                        </p>
-                                                    </div>
-
-                                                    <div className="d-flex justify-content-between">
-                                                        <p className="mb-2">
-                                                            Shipping
-                                                        </p>
-                                                        <p className="mb-2">
-                                                            $20.00
-                                                        </p>
-                                                    </div>
-
-                                                    <div className="d-flex justify-content-between mb-4">
-                                                        <p className="mb-2">
-                                                            Total(Incl. taxes)
-                                                        </p>
-                                                        <p className="mb-2">
-                                                            $4818.00
-                                                        </p>
-                                                    </div>
-
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-info btn-block btn-lg"
-                                                    >
-                                                        <div className="d-flex justify-content-between">
-                                                            <span>
-                                                                $4818.00
-                                                            </span>
-                                                            <span>
-                                                                Checkout{" "}
-                                                                <i className="fas fa-long-arrow-alt-right ms-2"></i>
-                                                            </span>
-                                                        </div>
-                                                    </button>
+                                                    <Total />
                                                 </div>
                                             </div>
                                         </div>

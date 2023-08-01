@@ -7,6 +7,7 @@ import RadioField from "../common/form/radioField";
 // import MultiSelectField from "../common/form/multiSelectField";
 import CheckBoxField from "../common/form/checkBoxField";
 import { signUp } from "../../store/users";
+import { Link } from "react-router-dom";
 
 const RegisterForm = () => {
     const dispatch = useDispatch();
@@ -90,38 +91,40 @@ const RegisterForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <TextField
-                label="Имя"
-                name="name"
-                value={data.name}
-                onChange={handleChange}
-                error={errors.name}
-            />
-            <TextField
-                label="Дата рождения"
-                name="birthDay"
-                type="date"
-                value={data.birthDay}
-                onChange={handleChange}
-                error={errors.birthDay}
-            />
-            <TextField
-                label="Электронная почта"
-                name="email"
-                value={data.email}
-                onChange={handleChange}
-                error={errors.email}
-            />
-            <TextField
-                label="Пароль"
-                type="password"
-                name="password"
-                value={data.password}
-                onChange={handleChange}
-                error={errors.password}
-            />
-            {/* <SelectField
+        <>
+            <h1 className="next-center">Rgister</h1>
+            <form onSubmit={handleSubmit}>
+                <TextField
+                    label="Имя"
+                    name="name"
+                    value={data.name}
+                    onChange={handleChange}
+                    error={errors.name}
+                />
+                <TextField
+                    label="Дата рождения"
+                    name="birthDay"
+                    type="date"
+                    value={data.birthDay}
+                    onChange={handleChange}
+                    error={errors.birthDay}
+                />
+                <TextField
+                    label="Электронная почта"
+                    name="email"
+                    value={data.email}
+                    onChange={handleChange}
+                    error={errors.email}
+                />
+                <TextField
+                    label="Пароль"
+                    type="password"
+                    name="password"
+                    value={data.password}
+                    onChange={handleChange}
+                    error={errors.password}
+                />
+                {/* <SelectField
                 label="Выбери свою профессию"
                 defaultOption="Choose..."
                 options={professionsList}
@@ -130,40 +133,44 @@ const RegisterForm = () => {
                 value={data.profession}
                 error={errors.profession}
             /> */}
-            <RadioField
-                options={[
-                    { name: "Male", value: "male" },
-                    { name: "Female", value: "female" },
-                    { name: "Other", value: "other" }
-                ]}
-                value={data.sex}
-                name="sex"
-                onChange={handleChange}
-                label="Выберите ваш пол"
-            />
-            {/* <MultiSelectField
+                <RadioField
+                    options={[
+                        { name: "Male", value: "male" },
+                        { name: "Female", value: "female" },
+                        { name: "Other", value: "other" }
+                    ]}
+                    value={data.sex}
+                    name="sex"
+                    onChange={handleChange}
+                    label="Выберите ваш пол"
+                />
+                {/* <MultiSelectField
                 options={qualitiesList}
                 onChange={handleChange}
                 defaultValue={data.qualities}
                 name="qualities"
                 label="Выберите ваши качества"
             /> */}
-            <CheckBoxField
-                value={data.licence}
-                onChange={handleChange}
-                name="licence"
-                error={errors.licence}
-            >
-                Подтвердить <a>лицензионное соглашение</a>
-            </CheckBoxField>
-            <button
-                className="btn btn-primary w-100 mx-auto"
-                type="submit"
-                disabled={!isValid}
-            >
-                Submit
-            </button>
-        </form>
+                <CheckBoxField
+                    value={data.licence}
+                    onChange={handleChange}
+                    name="licence"
+                    error={errors.licence}
+                >
+                    Подтвердить лицензионное соглашение
+                </CheckBoxField>
+                <button
+                    className="btn btn-primary m-3 w-100 mx-auto"
+                    type="submit"
+                    disabled={!isValid}
+                >
+                    Submit
+                </button>
+            </form>
+            <div className="justify-content-center">
+                <Link to="/auth/login">У меня уже есть аккаунт</Link>
+            </div>
+        </>
     );
 };
 

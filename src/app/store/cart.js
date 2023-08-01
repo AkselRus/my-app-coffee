@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import userService from "../services/user.service";
+import history from "../utils/hystory";
 
 const cartSlice = createSlice({
     name: "cart",
@@ -24,6 +25,7 @@ const cartSlice = createSlice({
             if (!Array.isArray(state.entities)) {
                 state.entities = [];
             }
+            console.log(action.payload);
             state.entities.push(action.payload);
         },
         removeItemCart: (state, action) => {
@@ -43,6 +45,9 @@ const cartSlice = createSlice({
                 (i) => i.prodId === action.payload
             );
             state.entities[elIndex].count = state.entities[elIndex].count - 1;
+        },
+        removeAll: (state) => {
+            state.entities = null;
         }
     }
 });
@@ -54,8 +59,7 @@ const {
     cartReceved,
     cartRequesFailed,
     removeItemCart,
-    incrementCount,
-    decrementCount
+    removeAll
 } = actions;
 
 export const loadCartList = () => async (dispatch) => {
@@ -76,7 +80,12 @@ export const removeProdCart = (payload) => async (dispatch) => {
         console.log(error);
     }
 };
-
+export const amountCart = (payload) => (state) => {
+    console.log(payload);
+    const sum = 0;
+    state.cart.entities.map((i) => ({}));
+    return sum;
+};
 export const addInCartBy = (payload) => async (dispatch) => {
     dispatch(addInCart(payload));
     try {
@@ -85,12 +94,23 @@ export const addInCartBy = (payload) => async (dispatch) => {
         console.log(error);
     }
 };
-export const countIncrement = (payload) => (dispatch) => {
-    dispatch(incrementCount(payload));
+
+export const clearShopingCart = () => async (dispatch) => {
+    history.push("/finish_pay");
+    dispatch(removeAll());
+    try {
+        await userService.deleteAllPurchases();
+    } catch (error) {
+        console.log(error);
+    }
 };
-export const countDecrement = (payload) => (dispatch) => {
-    dispatch(decrementCount(payload));
-};
+// export const countIncrement = (payload) => async (dispatch, state) => {
+//     console.log(payload);
+//     dispatch(incrementCount(payload));
+// };
+// export const countDecrement = (payload) => (dispatch) => {
+//     dispatch(decrementCount(payload));
+// };
 export const getShopList = () => (state) => state.cart.entities;
 export const getShopListLength = () => (state) => state.cart.entities?.length;
 

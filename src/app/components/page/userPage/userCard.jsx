@@ -1,15 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getUser } from "../../store/users";
+import { getUser } from "../../../store/users";
 
 const UserCard = ({ user }) => {
-    console.log("user", user);
-    const history = useHistory();
+    const navigate = useNavigate();
     const currentUser = useSelector(getUser());
     const handleClick = () => {
-        history.push(history.location.pathname + "/edit");
+        navigate("/edit");
     };
     return (
         <div className="card mb-3">

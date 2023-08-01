@@ -46,6 +46,12 @@ const userService = {
             userEndpoint + userId + "/purchases/" + payload
         );
         return data;
+    },
+    deleteAllPurchases: async () => {
+        const { data } = await httpService.delete(
+            userEndpoint + userId + "/purchases"
+        );
+        return data;
     }
 };
 export default userService;

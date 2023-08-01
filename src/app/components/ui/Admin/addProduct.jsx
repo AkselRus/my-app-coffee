@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { validator } from "../../utils/validator";
+import { validator } from "../../../utils/validator";
 import { nanoid } from "nanoid";
-import TextField from "../common/form/textField";
-import TextAreaField from "../common/form/textAreaField";
-import SelectField from "./selectField";
+import TextField from "../../common/form/textField";
+import TextAreaField from "../../common/form/textAreaField";
+import SelectField from "../selectField";
 import { useDispatch, useSelector } from "react-redux";
-import { createProduct } from "../../store/products";
-import { getCategories } from "../../store/categories";
+import { createProduct } from "../../../store/products";
+import { getCategories } from "../../../store/categories";
 
 const AddProduct = () => {
     const dispatch = useDispatch();

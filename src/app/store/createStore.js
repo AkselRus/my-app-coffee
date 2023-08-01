@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
     cart: cartReducer
 });
 
-export function createSrore() {
+export function createStore() {
     return configureStore({
         reducer: rootReducer
     });

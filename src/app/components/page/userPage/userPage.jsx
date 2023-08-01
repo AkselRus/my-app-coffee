@@ -1,11 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
-import UserCard from "../../ui/userCard";
+import UserCard from "./userCard";
 import { useSelector } from "react-redux";
 import { getUser } from "../../../store/users";
+import SpinerLoader from "../../SpinerLoader";
 
-const UserPage = ({ userId }) => {
-    console.log(userId);
+const UserPage = () => {
     const user = useSelector(getUser());
 
     if (user) {
@@ -25,12 +24,8 @@ const UserPage = ({ userId }) => {
             </div>
         );
     } else {
-        return <h1>Loading</h1>;
+        return <SpinerLoader />;
     }
-};
-
-UserPage.propTypes = {
-    userId: PropTypes.string.isRequired
 };
 
 export default UserPage;

@@ -1,12 +1,10 @@
 import React from "react";
-import MainPage from "../components/ui/mainPage";
+import MainPage from "../components/ui/Main/mainPage";
 
 const Main = () => {
     return (
         <div className="container mt-5">
-            <div>
-                <MainPage />
-            </div>
+            <MainPage />
         </div>
     );
 };

@@ -3,7 +3,7 @@ import { validator } from "../../utils/validator";
 import TextField from "../common/form/textField";
 import { useDispatch, useSelector } from "react-redux";
 import CheckBoxField from "../common/form/checkBoxField";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getAuthErrors, logIn } from "../../store/users";
 
 const LoginForm = () => {
@@ -13,10 +13,8 @@ const LoginForm = () => {
         password: "",
         stayOn: false
     });
-    const history = useHistory();
     const [errors, setErrors] = useState({});
     const loginError = useSelector(getAuthErrors());
-    console.log(loginError);
 
     const handleChange = (target) => {
         setData((prevState) => ({
@@ -51,10 +49,7 @@ const LoginForm = () => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        const redirect = history.location.state
-            ? history.location.state.from.pathname
-            : "/";
-        dispatch(logIn({ payload: data, redirect }));
+        dispatch(logIn({ payload: data }));
     };
     return (
         <>
@@ -62,6 +57,12 @@ const LoginForm = () => {
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col">
+                            <h1
+                                className="text-center
+                            "
+                            >
+                                Login
+                            </h1>
                             <form
                                 className="bg-white  rounded-5 shadow-5-strong p-5"
                                 onSubmit={handleSubmit}
@@ -101,9 +102,12 @@ const LoginForm = () => {
                                     type="submit"
                                     disabled={!isValid}
                                 >
-                                    Submit
+                                    Enter
                                 </button>
                             </form>
+                            <div>
+                                <Link to="/auth/register">Создать аккаунт</Link>
+                            </div>
                         </div>
                     </div>
                 </div>

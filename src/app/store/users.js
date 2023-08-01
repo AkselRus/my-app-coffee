@@ -111,18 +111,17 @@ const userUpdateFailed = createAction("users/userUpdateFailed");
 export const logOut = () => (dispatch) => {
     localStorageService.removeAuthData();
     dispatch(userLoggedOut());
-    history.push("/");
 };
 export const logIn =
-    ({ payload, redirect }) =>
+    ({ payload }) =>
     async (dispatch) => {
         const { email, password } = payload;
         dispatch(authRequested());
         try {
             const data = await authService.logIn({ email, password });
-            dispatch(authRequestedSuccess({ userId: data.localId }));
             localStorageService.setTokens(data);
-            history.push(redirect);
+            dispatch(authRequestedSuccess({ userId: data?.localId }));
+            window.location.assign("/");
         } catch (error) {
             const { code, message } = error.response.data.error;
             if (code === 400) {
