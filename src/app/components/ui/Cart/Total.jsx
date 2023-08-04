@@ -5,9 +5,12 @@ import { clearShopingCart, getShopList } from "../../../store/cart";
 const Total = () => {
     const dispatch = useDispatch();
     const shopList = useSelector(getShopList());
+    console.log("shopList", shopList);
 
     const [sum, setSum] = useState(0);
-    const newList = shopList.map((el) => el.count * Number(el.price));
+    const newList = shopList
+        ? shopList.map((el) => el.count * Number(el.price))
+        : [];
 
     const handleChange = () => {
         dispatch(clearShopingCart());

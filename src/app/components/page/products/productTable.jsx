@@ -5,9 +5,13 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 import Category from "../../ui/category";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteProduct } from "../../../store/products";
 // import { Link } from "react-router-dom";
 
 const ProductTable = ({ products, onSort, selectedSort }) => {
+    const dispatch = useDispatch();
     const columns = {
         id: {
             name: "id",
@@ -38,7 +42,7 @@ const ProductTable = ({ products, onSort, selectedSort }) => {
         price: { path: "price", name: "Цена" },
         quantity: { path: "quantity", name: "Кол-во" },
         image: {
-            path: "image",
+            // path: "image",
             name: "Фото",
             component: (products) => (
                 <button
@@ -49,11 +53,19 @@ const ProductTable = ({ products, onSort, selectedSort }) => {
                 </button>
             )
         },
+        update: {
+            name: "Изменить",
+            component: (products) => (
+                <Link to={products.id} className="btn btn-secondary ms-3">
+                    <i className="bi bi-gear"></i>
+                </Link>
+            )
+        },
         action: {
             name: "Действие",
             component: (products) => (
                 <button
-                    onClick={() => console.log(products._id)}
+                    onClick={() => dispatch(deleteProduct(products.id))}
                     className="btn btn-danger"
                 >
                     delete

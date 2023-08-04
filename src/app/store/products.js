@@ -41,8 +41,10 @@ const productsSlice = createSlice({
             );
             state.entities[elIndex] = action.payload;
         },
-        authRequested: (state) => {
-            state.error = null;
+        remove: (state, action) => {
+            state.entities = state.entities.filter(
+                (product) => product.id !== action.payload
+            );
         }
     }
 });
@@ -53,7 +55,8 @@ const {
     productsReceved,
     productsRequesFailed,
     productCreated,
-    productUpdate
+    productUpdate,
+    remove
 } = actions;
 
 export const loadproductsList = () => async (dispatch) => {
@@ -69,6 +72,7 @@ export const loadproductsList = () => async (dispatch) => {
 const productCreateRequested = createAction("products/productCreateRequested");
 const createproductFailed = createAction("products/createProductFailed");
 const updateProductFailed = createAction("products/updateProductFailed");
+const removeProductFailed = createAction("products/removeProductFailed");
 
 export function createProduct(payload) {
     return async function (dispatch) {
@@ -92,17 +96,15 @@ export const updateProduct = (payload) => async (dispatch) => {
     }
 };
 
-export const deleteProduct = (productId) => (state) => {
-    if (state.products.entities) {
-        return state.products.entities.filter(
-            (product) => product.id !== productId
-        );
+export const deleteProduct = (productId) => async (dispatch) => {
+    console.log("productId", productId);
+    try {
+        dispatch(remove(productId));
+        await productService.deleteProd(productId);
+    } catch (error) {
+        dispatch(removeProductFailed(error.message));
     }
 };
-
-// export const addProductInCart = (productId) => (dispatch) => {
-//     dispatch(addInCart(productId));
-// };
 
 export const getProductsList = () => (state) => state.products.entities;
 export const getProductById = (productId) => (state) => {

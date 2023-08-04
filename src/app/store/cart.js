@@ -48,6 +48,9 @@ const cartSlice = createSlice({
         },
         removeAll: (state) => {
             state.entities = null;
+        },
+        addError: (state, action) => {
+            state.error = action.payload;
         }
     }
 });
@@ -59,7 +62,8 @@ const {
     cartReceved,
     cartRequesFailed,
     removeItemCart,
-    removeAll
+    removeAll,
+    addError
 } = actions;
 
 export const loadCartList = () => async (dispatch) => {
@@ -77,7 +81,7 @@ export const removeProdCart = (payload) => async (dispatch) => {
     try {
         await userService.deleteItemPurchases(payload);
     } catch (error) {
-        console.log(error);
+        dispatch(addError(error.message));
     }
 };
 export const amountCart = (payload) => (state) => {
@@ -91,7 +95,7 @@ export const addInCartBy = (payload) => async (dispatch) => {
     try {
         await userService.addCart(payload);
     } catch (error) {
-        console.log(error);
+        dispatch(addError(error.message));
     }
 };
 
@@ -101,7 +105,7 @@ export const clearShopingCart = () => async (dispatch) => {
     try {
         await userService.deleteAllPurchases();
     } catch (error) {
-        console.log(error);
+        dispatch(addError(error.message));
     }
 };
 // export const countIncrement = (payload) => async (dispatch, state) => {

@@ -10,6 +10,8 @@ const NavBar = () => {
 
     console.log("isLoggedIn", isLoggedIn);
     const shopListLength = useSelector(getShopListLength());
+    console.log("shopListLength", shopListLength);
+
     return (
         <>
             <nav className="navbar navbar-expand-md navbar-dark bg-secondary mb-4">

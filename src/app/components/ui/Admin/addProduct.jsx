@@ -21,7 +21,7 @@ const AddProduct = () => {
         image: "https://brend-mebel.ru/image/no_image.jpg"
     });
     const [errors, setErrors] = useState({});
-    const categoriesList = categories.map((q) => ({
+    const categoriesList = categories?.map((q) => ({
         label: q.name,
         value: q.id
     }));

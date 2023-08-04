@@ -1,14 +1,20 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../../store/products";
 import SpinerLoader from "../../SpinerLoader";
+import { addInCartBy } from "../../../store/cart";
 // import PropTypes from 'prop-types'
 
 const ProductCard = () => {
     const { prodId } = useParams();
+    const dispatch = useDispatch();
+
     const product = useSelector(getProductById(prodId));
-    console.log("product", product);
+    const handleClickPay = (data) => {
+        console.log("data", data);
+        dispatch(addInCartBy({ prodId: data.id, count: 1, price: data.price }));
+    };
     if (product) {
         return (
             <div className="container">
@@ -36,7 +42,10 @@ const ProductCard = () => {
                                     </p>
                                 </div>
                                 <div className="d-flex flex-row-reverse">
-                                    <button className="btn btn-primary ">
+                                    <button
+                                        className="btn btn-primary"
+                                        onClick={() => handleClickPay(product)}
+                                    >
                                         Купить
                                     </button>
                                 </div>

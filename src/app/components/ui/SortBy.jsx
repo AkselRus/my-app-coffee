@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const SortBy = ({ label }) => {
+const SortBy = ({ label, onSort }) => {
     const [isOpen, setOpen] = useState(false);
     const toggleMenu = () => {
         setOpen((prevState) => !prevState);
@@ -22,8 +22,18 @@ const SortBy = ({ label }) => {
                             "w-100 dropdown-menu" + (isOpen ? " show" : "")
                         }
                     >
-                        <Link className="dropdown-item">Сначало недорогие</Link>
-                        <Link className="dropdown-item">Сначало дорогие</Link>
+                        <Link
+                            onClick={() => onSort("min")}
+                            className="dropdown-item"
+                        >
+                            Сначало недорогие
+                        </Link>
+                        <Link
+                            onClick={() => onSort("max")}
+                            className="dropdown-item"
+                        >
+                            Сначало дорогие
+                        </Link>
                         <Link className="dropdown-item">По популярности</Link>
                     </div>
                 </div>
@@ -33,7 +43,8 @@ const SortBy = ({ label }) => {
 };
 
 SortBy.propTypes = {
-    label: PropTypes.string
+    label: PropTypes.string,
+    onSort: PropTypes.func
 };
 
 export default SortBy;

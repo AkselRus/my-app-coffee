@@ -3,6 +3,7 @@ import localStorageService from "./localStorage.service";
 
 const userEndpoint = "user/";
 const userId = localStorageService.getUserId();
+const purchases = "/purchases/";
 
 const userService = {
     get: async () => {
@@ -28,11 +29,11 @@ const userService = {
         return data;
     },
     addCart: async (payload) => {
-        console.log(payload);
         const { data } = await httpService.put(
-            userEndpoint + userId + "/purchases/" + payload.prodId,
+            userEndpoint + userId + purchases + payload.prodId,
             payload
         );
+
         return data;
     },
     getCart: async () => {
@@ -43,7 +44,7 @@ const userService = {
     },
     deleteItemPurchases: async (payload) => {
         const { data } = await httpService.delete(
-            userEndpoint + userId + "/purchases/" + payload
+            userEndpoint + userId + purchases + payload
         );
         return data;
     },

@@ -6,6 +6,7 @@ function NavProfile() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const currentUser = useSelector(getUser());
+    console.log("currentUser", currentUser);
     const [isOpen, setOpen] = useState(false);
     const toggleMenu = () => {
         setOpen((prevState) => !prevState);
@@ -36,12 +37,14 @@ function NavProfile() {
                 >
                     Profile
                 </Link>
-                <Link to="/admin" className="dropdown-item">
-                    Add Product
-                </Link>
                 <Link to="" className="dropdown-item" onClick={handleLoguot}>
                     Log Out
                 </Link>
+                {currentUser._id === "rS7NxORHx4XXh59hTVl2IiIgpkQ2" && (
+                    <Link to="/admin" className="dropdown-item">
+                        Add Product
+                    </Link>
+                )}
             </div>
         </div>
     );

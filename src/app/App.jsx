@@ -16,6 +16,7 @@ import AdminPanel from "./components/ui/Admin/adminPanel";
 import AuthLayout from "./layouts/AuthLayout";
 import ShopingCarts from "./components/ui/Cart/shopingCarts";
 import ProductCard from "./components/page/products/ProductCard";
+import ProductEditTable from "./components/page/products/productEditTable";
 
 function App() {
     return (
@@ -35,7 +36,11 @@ function App() {
                     </Route>
 
                     <Route path="cart" element={<ShopingCarts />} />
-                    <Route path="admin" element={<AdminPanel />} />
+                    <Route path="admin/*" element={<AdminPanel />}>
+                        {/* <Route index element={<Navigate to="" />} /> */}
+                        <Route path=":prodId" element={<ProductEditTable />} />
+                        <Route path="*" element={<Navigate to="admin/" />} />
+                    </Route>
 
                     <Route path="users/*" element={<Users />}>
                         <Route index element={<Navigate to="" />} />

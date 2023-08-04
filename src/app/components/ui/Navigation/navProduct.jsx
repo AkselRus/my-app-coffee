@@ -18,6 +18,14 @@ const NavProduct = ({ items, onItemSelect, selectedItem, onClick }) => {
                         {item.name}
                     </li>
                 ))}
+                <div>
+                    <button
+                        className="list-group-item mx-4 m-2"
+                        onClick={() => onClick()}
+                    >
+                        Сбросить
+                    </button>
+                </div>
             </ul>
         </div>
     );

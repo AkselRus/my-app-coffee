@@ -64,15 +64,6 @@ const usersSlice = createSlice({
             // );
             state.entities = action.payload;
         },
-        addInCart: (state, action) => {
-            if (!state.entities.purchases) {
-                state.entities.purchases = [];
-            }
-            state.entities.purchases = [
-                ...state.entities.purchases,
-                action.payload
-            ];
-        },
         authRequested: (state) => {
             state.error = null;
         }
@@ -88,8 +79,7 @@ const {
     authRequestedFailed,
     userCreated,
     userLoggedOut,
-    userUpdate,
-    addInCart
+    userUpdate
 } = actions;
 
 export const loadUsersList = () => async (dispatch) => {
@@ -175,20 +165,6 @@ export const updateUser = (payload) => async (dispatch) => {
         const { content } = await userService.update(payload);
         dispatch(userUpdate(content));
         history.push(`/users/${content._id}`);
-    } catch (error) {
-        dispatch(userUpdateFailed(error.message));
-    }
-};
-
-export const addInCartBy = (payload) => async (dispatch) => {
-    console.log(payload);
-    dispatch(addInCart(payload));
-
-    try {
-        // const currentState = getState();
-        // console.log("currentState", currentState.user.entities);
-        // const { content } = await userService.update();
-        // dispatch(userUpdate(content));
     } catch (error) {
         dispatch(userUpdateFailed(error.message));
     }
