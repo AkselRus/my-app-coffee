@@ -3,29 +3,29 @@ import PropTypes from "prop-types";
 
 const NavProduct = ({ items, onItemSelect, selectedItem, onClick }) => {
     return (
-        <div className="position-sticky pt-3">
-            <ul className="list-group">
+        <div className="position-sticky pt-2">
+            <ul className="nav flex-column mb-auto">
                 {items.map((item) => (
-                    <li
-                        key={item.id}
-                        className={
-                            "list-group-item" +
-                            (item === selectedItem ? " active" : "")
-                        }
-                        onClick={() => onItemSelect(item)}
-                        role="button"
-                    >
-                        {item.name}
+                    <li key={item.id} className="nav-item">
+                        <a
+                            className={
+                                "nav-link d-flex align-items-center gap-2 border border-primary rounded mt-2" +
+                                (item === selectedItem ? " active" : "")
+                            }
+                            aria-current="page"
+                            onClick={() => onItemSelect(item)}
+                            role="button"
+                        >
+                            {item.name}
+                        </a>
                     </li>
                 ))}
-                <div>
-                    <button
-                        className="list-group-item mx-4 m-2"
-                        onClick={() => onClick()}
-                    >
-                        Сбросить
-                    </button>
-                </div>
+                <button
+                    className="btn btn-outline-primary m-2 mx-auto"
+                    onClick={() => onClick()}
+                >
+                    Сбросить
+                </button>
             </ul>
         </div>
     );

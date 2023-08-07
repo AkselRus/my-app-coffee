@@ -3,7 +3,7 @@ import MainPage from "../components/ui/Main/mainPage";
 
 const Main = () => {
     return (
-        <div className="container mt-5">
+        <div className="container-fluid">
             <MainPage />
         </div>
     );

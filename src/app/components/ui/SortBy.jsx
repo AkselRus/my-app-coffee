@@ -10,7 +10,7 @@ const SortBy = ({ label, onSort }) => {
     return (
         <div className="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <div className="mb-1">{label}</div>
+                <span className="fs-4">{label}</span>
             </div>
             <div>
                 <div className="dropdown" onClick={toggleMenu}>

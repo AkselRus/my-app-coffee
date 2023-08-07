@@ -16,7 +16,7 @@ import AdminPanel from "./components/ui/Admin/adminPanel";
 import AuthLayout from "./layouts/AuthLayout";
 import ShopingCarts from "./components/ui/Cart/shopingCarts";
 import ProductCard from "./components/page/products/ProductCard";
-import ProductEditTable from "./components/page/products/productEditTable";
+import ProductEditPage from "./components/page/products/productEditPage";
 
 function App() {
     return (
@@ -36,11 +36,25 @@ function App() {
                     </Route>
 
                     <Route path="cart" element={<ShopingCarts />} />
-                    <Route path="admin/*" element={<AdminPanel />}>
-                        {/* <Route index element={<Navigate to="" />} /> */}
-                        <Route path=":prodId" element={<ProductEditTable />} />
-                        <Route path="*" element={<Navigate to="admin/" />} />
+
+                    <Route path="admin/">
+                        <Route index element={<AdminPanel />} />
+                        <Route path=":prodId/">
+                            <Route index element={<ProductEditPage />} />
+                            {/* <Route path="profile" element={<User />} />
+                        <Route path="edit" element={<Edit />} />
+                        <Route path="*" element={<Navigate to="profile" />} /> */}
+                        </Route>
                     </Route>
+
+                    {/* <Route path="admin/" element={<AdminPanel />}>
+                        <Route index element={<Navigate to="" />} />
+                        <Route
+                            path="/admin/:prodId"
+                            element={<ProductEditPage />}
+                        />
+                        <Route path="*" element={<Navigate to="admin/" />} />
+                    </Route> */}
 
                     <Route path="users/*" element={<Users />}>
                         <Route index element={<Navigate to="" />} />
@@ -51,7 +65,6 @@ function App() {
                     <Route path="product/*" element={<ProductCard />}>
                         <Route index element={<ProductList />} />
                         <Route path=":prodId" element={<ProductCard />} />
-                        {/* <Route path="edit" element={<EditUserPage />} /> */}
                         <Route path="*" element={<Navigate to="" />} />
                     </Route>
                     <Route path="*" element={<Navigate to="" />} />

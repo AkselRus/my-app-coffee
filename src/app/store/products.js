@@ -1,5 +1,4 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
-import history from "../utils/hystory";
 import productService from "../services/product.service";
 
 const productsSlice = createSlice({
@@ -80,17 +79,18 @@ export function createProduct(payload) {
         try {
             const { content } = await productService.create(payload);
             dispatch(productCreated(content));
-            history.push("/products");
+            window.location.assign("/admin");
         } catch (error) {
             dispatch(createproductFailed(error.message));
         }
     };
 }
 export const updateProduct = (payload) => async (dispatch) => {
+    console.log("payload", payload);
     try {
         const { content } = await productService.update(payload);
         dispatch(productUpdate(content));
-        history.push(`/products/${content.id}`);
+        window.location.assign("/admin");
     } catch (error) {
         dispatch(updateProductFailed(error.message));
     }

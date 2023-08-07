@@ -5,7 +5,7 @@ import { addInCartBy } from "../../../store/cart";
 
 import ProductList from "../../page/products/productList";
 import MainCategory from "./mainCategory";
-import Search from "../Search";
+// import Search from "../Search";
 import SpinerLoader from "../../SpinerLoader";
 
 const MainPage = () => {
@@ -18,9 +18,9 @@ const MainPage = () => {
         if (searchProd !== "") setSearchProd("");
         setSelectedCateg(item);
     };
-    const handleSearchProd = ({ target }) => {
-        setSearchProd(target.value);
-    };
+    // const handleSearchProd = ({ target }) => {
+    //     setSearchProd(target.value);
+    // };
     const clearFilter = () => {
         setSelectedCateg();
     };
@@ -49,13 +49,13 @@ const MainPage = () => {
 
         return (
             <>
-                {/* menu */}
-                <div className="container-fluid">
+                <main>
+                    {/* menu */}
                     <div className="row">
-                        <Search
+                        {/* <Search
                             handleChange={handleSearchProd}
                             serch={searchProd}
-                        />
+                        /> */}
                         <MainCategory
                             label="Категории"
                             selectedCateg={selectedCateg}
@@ -76,7 +76,7 @@ const MainPage = () => {
                         <h6 className="border-bottom pb-2 mb-0">Предложения</h6>
                     </div> */}
                     </div>
-                </div>
+                </main>
             </>
         );
     }

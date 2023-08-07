@@ -101,6 +101,7 @@ const userUpdateFailed = createAction("users/userUpdateFailed");
 export const logOut = () => (dispatch) => {
     localStorageService.removeAuthData();
     dispatch(userLoggedOut());
+    window.location.assign("/");
 };
 export const logIn =
     ({ payload }) =>

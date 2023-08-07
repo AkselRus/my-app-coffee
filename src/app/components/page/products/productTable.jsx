@@ -56,7 +56,10 @@ const ProductTable = ({ products, onSort, selectedSort }) => {
         update: {
             name: "Изменить",
             component: (products) => (
-                <Link to={products.id} className="btn btn-secondary ms-3">
+                <Link
+                    to={`/admin/${products.id}`}
+                    className="btn btn-secondary ms-3"
+                >
                     <i className="bi bi-gear"></i>
                 </Link>
             )

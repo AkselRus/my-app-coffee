@@ -17,9 +17,9 @@ const ProductCard = () => {
     };
     if (product) {
         return (
-            <div className="container">
-                <div className="card mb-3 max-width: 540px">
-                    <div className="row g-0">
+            <div className="container shadow p-3 mb-5 bg-white rounded">
+                <div className=" mx-auto">
+                    <div className="row g-0 ">
                         <div className="col-md-4">
                             <img
                                 src={product.image}
@@ -33,23 +33,28 @@ const ProductCard = () => {
                                 <p className="card-text">
                                     {product.description}
                                 </p>
-                                <div className="p-2 mt-4">
-                                    <p className="small mb-0">
-                                        Количество: {`1`}
-                                    </p>
-                                    <p className="small mb-0">
-                                        {`Цена: ${product.price}`}
-                                    </p>
+                                <div className="row">
+                                    <div className="col">
+                                        <p className="small mb-0">
+                                            Количество: {`1`}
+                                        </p>
+                                        <p className="small mb-0">
+                                            {`Цена: ${product.price}`}
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <button
+                                            className="btn btn-primary"
+                                            onClick={() =>
+                                                handleClickPay(product)
+                                            }
+                                        >
+                                            Купить
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="d-flex flex-row-reverse">
-                                    <button
-                                        className="btn btn-primary"
-                                        onClick={() => handleClickPay(product)}
-                                    >
-                                        Купить
-                                    </button>
-                                </div>
-                                <p className="card-text">
+
+                                <p className="card-text position-absolute bottom-0 end-0">
                                     <small className="text-muted">
                                         id: <span>{product.id}</span>
                                     </small>

@@ -14,22 +14,25 @@ const MainCategory = ({
 
     return (
         categories && (
-            <nav
-                id="sidebarMenu"
-                className="col-md-3 col-lg-2 d-md-block bg-light sidebar border border-2 rounded collapse"
-            >
-                <div className="mb-2 m-3">
-                    <span>{label}</span>
-                </div>
-                {categories && (
-                    <NavProduct
-                        items={categories}
-                        onItemSelect={handleCategorySelect}
-                        selectedItem={selectedCateg}
-                        onClick={onClick}
-                    />
-                )}
-            </nav>
+            <>
+                <nav
+                    id="sidebarMenu"
+                    // className="col-md-3"
+                    className="col-md-4 col-lg-2 d-md-block bg-dark sidebar border-end collapse"
+                >
+                    <div className="mb-2 m-3 text-white">
+                        <span className="fs-4">{label}</span>
+                    </div>
+                    {categories && (
+                        <NavProduct
+                            items={categories}
+                            onItemSelect={handleCategorySelect}
+                            selectedItem={selectedCateg}
+                            onClick={onClick}
+                        />
+                    )}
+                </nav>
+            </>
         )
     );
 };

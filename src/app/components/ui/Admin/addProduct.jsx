@@ -5,21 +5,31 @@ import TextField from "../../common/form/textField";
 import TextAreaField from "../../common/form/textAreaField";
 import SelectField from "../selectField";
 import { useDispatch, useSelector } from "react-redux";
-import { createProduct } from "../../../store/products";
+import {
+    createProduct,
+    getProductById,
+    updateProduct
+} from "../../../store/products";
 import { getCategories } from "../../../store/categories";
+import { useParams } from "react-router-dom";
+
+const defaultData = {
+    id: nanoid(),
+    name: "",
+    quantity: "",
+    categories: "",
+    description: "",
+    price: "",
+    image: "https://brend-mebel.ru/image/no_image.jpg"
+};
 
 const AddProduct = () => {
     const dispatch = useDispatch();
+    const { prodId } = useParams();
+    const productEditPage = useSelector(getProductById(prodId));
     const categories = useSelector(getCategories());
-    const [data, setData] = useState({
-        id: nanoid(),
-        name: "",
-        quantity: "",
-        categories: "67rdca3eeb7f6fgeed471818",
-        description: "",
-        price: "",
-        image: "https://brend-mebel.ru/image/no_image.jpg"
-    });
+    const test = prodId ? productEditPage : defaultData;
+    const [data, setData] = useState(test);
     const [errors, setErrors] = useState({});
     const categoriesList = categories?.map((q) => ({
         label: q.name,
@@ -73,11 +83,16 @@ const AddProduct = () => {
         if (!isValid) return;
         dispatch(createProduct(data));
     };
+    const handleSubmitUpdate = async (e) => {
+        e.preventDefault();
+        console.log("handleSubmitUpdate");
+        dispatch(updateProduct(data));
+    };
     return (
         <div className="col-lg-5">
-            <div className="card bg-body text-white rounded-3">
-                <div className="card-body">
-                    <form onSubmit={handleSubmit}>
+            <div className="card bg-body text-white">
+                <div className="card-body bg-dark rounded-3">
+                    <form onSubmit={prodId ? handleSubmitUpdate : handleSubmit}>
                         <div className="text-center">Add product</div>
                         <TextField
                             label="Название товара"
@@ -131,7 +146,7 @@ const AddProduct = () => {
                             type="submit"
                             disabled={!isValid}
                         >
-                            Create
+                            {prodId ? "Обновить" : "Создать"}
                         </button>
                     </form>
                 </div>
