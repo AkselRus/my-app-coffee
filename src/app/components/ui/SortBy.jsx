@@ -12,7 +12,18 @@ const SortBy = ({ label, onSort }) => {
             <div>
                 <span className="fs-4">{label}</span>
             </div>
-            <div>
+            <div className="d-flex justify-content-between align-items-center mb-4">
+                {/* <form className="d-flex">
+                    <input
+                        className="form-control me-2"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                    />
+                    <button className="btn btn-outline-success" type="submit">
+                        Search
+                    </button>
+                </form> */}
                 <div className="dropdown" onClick={toggleMenu}>
                     <div className="btn btn-secondary btn-sm dropdown-toggle d-flex align-items-center">
                         Сортировка по стоимости

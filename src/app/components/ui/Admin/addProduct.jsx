@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { validator } from "../../../utils/validator";
-import { nanoid } from "nanoid";
 import TextField from "../../common/form/textField";
 import TextAreaField from "../../common/form/textAreaField";
 import SelectField from "../selectField";
@@ -12,20 +11,29 @@ import {
 } from "../../../store/products";
 import { getCategories } from "../../../store/categories";
 import { useParams } from "react-router-dom";
-
-const defaultData = {
-    id: nanoid(),
-    name: "",
-    quantity: "",
-    categories: "",
-    description: "",
-    price: "",
-    image: "https://brend-mebel.ru/image/no_image.jpg"
-};
+import { MyUploadButton } from "../../UpLoader";
 
 const AddProduct = () => {
+    // const uploader = Uploader({
+    //     apiKey: "free"
+    // });
+    // const options = { multi: true };
+
     const dispatch = useDispatch();
     const { prodId } = useParams();
+    const [selectedImage, setSelectedImage] = useState(null);
+    console.log("selectedImage", selectedImage);
+
+    const defaultData = {
+        id: Date.now().toString(),
+        name: "",
+        quantity: "",
+        categories: "",
+        description: "",
+        price: "",
+        image: "https://brend-mebel.ru/image/no_image.jpg"
+    };
+
     const productEditPage = useSelector(getProductById(prodId));
     const categories = useSelector(getCategories());
     const test = prodId ? productEditPage : defaultData;
@@ -81,12 +89,20 @@ const AddProduct = () => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        dispatch(createProduct(data));
+        if (selectedImage) {
+            const newData = { ...data, image: selectedImage[0].fileUrl };
+            console.log("newData", newData);
+            dispatch(createProduct(newData));
+        } else dispatch(createProduct(data));
     };
     const handleSubmitUpdate = async (e) => {
         e.preventDefault();
         console.log("handleSubmitUpdate");
-        dispatch(updateProduct(data));
+        if (selectedImage) {
+            const newData = { ...data, image: selectedImage[0].fileUrl };
+            console.log("newData", newData);
+            dispatch(updateProduct(newData));
+        } else dispatch(updateProduct(data));
     };
     return (
         <div className="col-lg-5">
@@ -133,16 +149,27 @@ const AddProduct = () => {
                             onChange={handleChange}
                             error={errors.price}
                         />
-                        {/* <TextField
-                label="Загрузите фотографию"
-                type="file"
-                name="image"
-                accept="image/png, image/jpeg"
-                onChange={handleChange}
-                error={errors.image}
-            /> */}
+
+                        <MyUploadButton setFiles={setSelectedImage} />
+                        {selectedImage && (
+                            <div className="card-body m-2 border border-primary rounded">
+                                <img
+                                    alt="not found"
+                                    width={"250px"}
+                                    className="card-img-top"
+                                    src={selectedImage[0].fileUrl}
+                                />
+                                <br />
+                                <button
+                                    className="btn btn-danger m-2"
+                                    onClick={() => setSelectedImage(null)}
+                                >
+                                    Remove
+                                </button>
+                            </div>
+                        )}
                         <button
-                            className="btn btn-primary"
+                            className="btn btn-primary m-2"
                             type="submit"
                             disabled={!isValid}
                         >

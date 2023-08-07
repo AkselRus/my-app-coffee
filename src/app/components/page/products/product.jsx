@@ -6,28 +6,44 @@ import { getCategoryById } from "../../../store/categories";
 
 const Product = ({ data, onClick }) => {
     const categori = useSelector(getCategoryById(data?.categories));
-    if (categori) {
+    if (categori && data) {
         return (
             <>
-                <div className="col-md-4 p-2">
-                    <div className="card m-2">
+                <div className=" col-md-4 p-2">
+                    <div className="card m-2 h-100 shadow bg-body-tertiary ">
                         <img
                             src={data.image}
                             className="card-img-top"
-                            alt="..."
+                            width="350"
+                            height="350"
+                            alt="icon"
                         />
-                        <div className="card-body">
-                            <h5 className="card-title">
-                                Special title treatment
+
+                        <div className="card-body p-2 m-2">
+                            <h5 className="">
+                                <a
+                                    className="nav-link text-dark p-0"
+                                    href={`/product/${data.id}`}
+                                >
+                                    {data.name}
+                                </a>
                             </h5>
-                            <p className="card-text">
-                                With supporting text below as a natural lead-in
-                                to additional content.
-                            </p>
-                            <a href="#" className="btn btn-primary">
-                                Go somewhere
-                            </a>
+
+                            <div className="d-flex align-items-end">
+                                <h5>{`${Number(data.price).toFixed(2)} ₽`}</h5>
+                                <a
+                                    onClick={() => onClick(data)}
+                                    className="btn btn-outline-success ms-auto"
+                                >
+                                    <i className="bi bi-cart"></i>
+                                </a>
+                            </div>
                         </div>
+                        <p className="card-text text-end mx-2">
+                            <small className="text-muted">
+                                {`id: ${data.id}`}
+                            </small>
+                        </p>
                     </div>
                 </div>
             </>

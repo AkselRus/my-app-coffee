@@ -8,6 +8,7 @@ import { Offcanvas } from "bootstrap";
 const NavBar = () => {
     const dispatch = useDispatch();
     const user = useSelector(getUser());
+    console.log(user);
     const isLoggedIn = useSelector(getIsLoggedIn());
     console.log("isLoggedIn", isLoggedIn);
     const shopListLength = useSelector(getShopListLength());
@@ -23,7 +24,7 @@ const NavBar = () => {
 
     return (
         <>
-            <div
+            {/* <div
                 className="offcanvas offcanvas-start"
                 tabIndex="-1"
                 id="offcanvasRight"
@@ -61,7 +62,7 @@ const NavBar = () => {
                     </span>
                 </div>
             </div>
-            {/* <nav className="navbar navbar-dark bg-dark">
+            <nav className="navbar navbar-dark bg-dark">
                 <div className="row">
                     <div className="container-fluid">
                         <button

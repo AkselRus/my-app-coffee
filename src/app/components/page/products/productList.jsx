@@ -32,7 +32,7 @@ const ProductList = ({ data, handleClic, setCateg, count }) => {
     const handlePageChange = (pageIndex) => {
         setCurrentPage(pageIndex);
     };
-    const pageSize = 4;
+    const pageSize = 16;
     const productsCrop = paginate(sort, currentPage, pageSize);
     // while (productsCrop.length) {
     //     const chunk = productsCrop.splice(0, 3);
@@ -46,7 +46,7 @@ const ProductList = ({ data, handleClic, setCateg, count }) => {
                     <SortBy arr={data} onSort={handleSort} label="Menu" />
 
                     {data ? (
-                        <div className="row w-100">
+                        <div className="row w-100 ">
                             {productsCrop?.map((p) => (
                                 <Product
                                     key={p.id}
