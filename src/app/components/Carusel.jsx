@@ -1,57 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
+import Carousel from "react-bootstrap/Carousel";
+// import ExampleCarouselImage from "components/ExampleCarouselImage";
 
 const Carusel = () => {
+    const [index, setIndex] = useState(0);
+    const dataCarousel = [
+        "https://w-dog.ru/wallpapers/4/19/364561336480358/zavtrak-kofe-chashka-parizh-franciya-notr-dam-sobor-pruzhina-kruassan-dzhem-notr-dam.jpg",
+        "https://irkutsk.bonodono.ru/upload/iblock/5cd/5cdcc6208beae5f7a26debf8acbf98a5.jpg",
+        "https://i.ytimg.com/vi/FcMhCHurUI4/maxresdefault.jpg"
+    ];
+
+    const handleSelect = (selectedIndex) => {
+        setIndex(selectedIndex);
+    };
     return (
-        <div
-            id="introCarousel"
-            className="carousel slide carousel-fade shadow-2-strong"
-            data-mdb-ride="carousel"
-        >
-            {/* <!-- Indicators --> */}
-            <ol className="carousel-indicators">
-                <li
-                    data-mdb-target="#introCarousel"
-                    data-mdb-slide-to="0"
-                    className="active"
-                ></li>
-                <li data-mdb-target="#introCarousel" data-mdb-slide-to="1"></li>
-                <li data-mdb-target="#introCarousel" data-mdb-slide-to="2"></li>
-            </ol>
-            <div className="carousel-item active">
-                <div
-                    className="mask"
-                    style="background-color: rgba(0, 0, 0, 0.6);"
-                >
-                    <div className="d-flex justify-content-center align-items-center h-100">
-                        <div className="text-white text-center">
-                            <h1 className="mb-3">Learn Bootstrap 5 with MDB</h1>
-                            <h5 className="mb-4">
-                                Best & free guide of responsive web design
-                            </h5>
-                            <a
-                                className="btn btn-outline-light btn-lg m-2"
-                                href="https://www.youtube.com/watch?v=c9B4TPnak1A"
-                                role="button"
-                                rel="nofollow noreferrer"
-                                target="_blank"
-                            >
-                                Start tutorial
-                            </a>
-                            <a
-                                className="btn btn-outline-light btn-lg m-2"
-                                href="https://mdbootstrap.com/docs/standard/"
-                                target="_blank"
-                                role="button"
-                                rel="noreferrer"
-                            >
-                                Download MDB UI KIT
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Carousel activeIndex={index} onSelect={handleSelect}>
+            <Carousel.Item style={{ height: "500px" }}>
+                <img
+                    className="d-block w-100"
+                    src={dataCarousel[0]}
+                    alt="First slide"
+                />
+                <Carousel.Caption>
+                    <h3>First slide label</h3>
+                    <p>
+                        Nulla vitae elit libero, a pharetra augue mollis
+                        interdum.
+                    </p>
+                </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item style={{ height: "500px" }}>
+                <img
+                    className="d-block w-100"
+                    src={dataCarousel[1]}
+                    alt="Second slide"
+                />
+                {/* <ExampleCarouselImage text="Second slide" /> */}
+                <Carousel.Caption>
+                    <h3>Second slide label</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </p>
+                </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item style={{ height: "500px" }}>
+                <img
+                    className="d-block w-100"
+                    src={dataCarousel[2]}
+                    alt="Second slide"
+                />
+                {/* <ExampleCarouselImage text="Third slide" /> */}
+                <Carousel.Caption>
+                    <h3>Third slide label</h3>
+                    <p>
+                        Praesent commodo cursus magna, vel scelerisque nisl
+                        consectetur.
+                    </p>
+                </Carousel.Caption>
+            </Carousel.Item>
+        </Carousel>
     );
 };
-
 export default Carusel;

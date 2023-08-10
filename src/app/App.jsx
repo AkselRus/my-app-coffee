@@ -20,7 +20,7 @@ import ProductEditPage from "./components/page/products/productEditPage";
 
 function App() {
     return (
-        <div>
+        <div className="container">
             <AppLoader>
                 <NavBar />
                 <Routes>

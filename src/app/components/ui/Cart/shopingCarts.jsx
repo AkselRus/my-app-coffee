@@ -12,7 +12,6 @@ import SpinerLoader from "../../SpinerLoader";
 import Total from "./Total";
 import CardType from "./CardType";
 import SortBy from "../SortBy";
-import Search from "../Search";
 
 const ShopingCarts = () => {
     const dispatch = useDispatch();
@@ -34,16 +33,15 @@ const ShopingCarts = () => {
 
     return (
         <div>
-            <section className="h-100 h-custom">
-                <div className="container py-5 h-100">
-                    <Search />
+            <section className="py-5 h-custom">
+                <div className="container">
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col">
                             <div className="card">
                                 <div className="card-body p-4">
                                     <div className="row">
                                         <div className="col-lg-7">
-                                            <h5 className="mb-3">
+                                            <h5>
                                                 <a
                                                     href="/"
                                                     className="text-body"

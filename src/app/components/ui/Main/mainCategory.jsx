@@ -17,20 +17,21 @@ const MainCategory = ({
             <>
                 <nav
                     id="sidebarMenu"
-                    // className="col-md-3"
-                    className="col-md-4 col-lg-2 d-md-block bg-dark sidebar border-end collapse"
+                    className="navbar navbar-expand-lg col-lg-2 d-block sidebar border-end"
                 >
-                    <div className="mb-2 m-3 text-white">
-                        <span className="fs-4">{label}</span>
+                    <div className="sticky-top">
+                        <div className="py-3">
+                            <span className="fs-4">{label}</span>
+                        </div>
+                        {categories && (
+                            <NavProduct
+                                items={categories}
+                                onItemSelect={handleCategorySelect}
+                                selectedItem={selectedCateg}
+                                onClick={onClick}
+                            />
+                        )}
                     </div>
-                    {categories && (
-                        <NavProduct
-                            items={categories}
-                            onItemSelect={handleCategorySelect}
-                            selectedItem={selectedCateg}
-                            onClick={onClick}
-                        />
-                    )}
                 </nav>
             </>
         )

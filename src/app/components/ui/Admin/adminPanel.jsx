@@ -14,7 +14,7 @@ const AdminPanel = () => {
     const [selectedCategory, setSelectedCategory] = useState();
     const [sortBy, setSortBy] = useState({ path: "name", order: "asc" });
     const [currentPage, setCurrentPage] = useState(1);
-    const pageSize = 6;
+    const pageSize = 9;
 
     const handlePageChange = (pageIndex) => {
         setCurrentPage(pageIndex);

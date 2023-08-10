@@ -9,35 +9,46 @@ import { paginate } from "../../../utils/paginate";
 const ProductList = ({ data, handleClic, setCateg, count }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [sort, setSort] = useState(data);
-
     useEffect(() => {
         setCurrentPage(1);
+        // const productsCrop = paginate(sort, currentPage, pageSize);
+
         setSort(data);
     }, [data]);
 
     const handleSort = (params) => {
+        console.log(params);
+
         if (params === "max") {
-            const sortData = sort.toSorted(
+            const sortData = data.toSorted(
                 (a, b) => parseFloat(b.price) - parseFloat(a.price)
             );
-            setSort(sortData);
+            return setSort(sortData);
         }
         if (params === "min") {
-            const sortData = sort.toSorted(
+            const sortData = data.toSorted(
                 (a, b) => parseFloat(a.price) - parseFloat(b.price)
             );
-            setSort(sortData);
-        } else setSort(data);
+
+            return setSort(sortData);
+        }
+        if (params === "bookmark") {
+            const trueFirst = data.toSorted(
+                (a, b) => Number(b.bookmark) - Number(a.bookmark)
+            );
+
+            return setSort(trueFirst);
+        } else return setSort(data);
     };
     const handlePageChange = (pageIndex) => {
         setCurrentPage(pageIndex);
     };
+
     const pageSize = 16;
+    console.log("sort prev paginate", sort);
+
     const productsCrop = paginate(sort, currentPage, pageSize);
-    // while (productsCrop.length) {
-    //     const chunk = productsCrop.splice(0, 3);
-    //     console.log(chunk);
-    // }
+    console.log("productsCrop", productsCrop);
 
     return (
         <main className="col-md-8 ms-sm-auto col-lg-10 px-md-4 ">
@@ -64,9 +75,9 @@ const ProductList = ({ data, handleClic, setCateg, count }) => {
                         currentPage={currentPage}
                         onPageChange={handlePageChange}
                     />
-                    <small className="d-block text-end mt-3">
+                    {/* <small className="d-block text-end mt-3">
                         <a onClick={() => setCateg()}>Все предложения</a>
-                    </small>
+                    </small> */}
                 </div>
             </div>
         </main>

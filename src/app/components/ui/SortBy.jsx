@@ -8,12 +8,12 @@ const SortBy = ({ label, onSort }) => {
         setOpen((prevState) => !prevState);
     };
     return (
-        <div className="d-flex justify-content-between align-items-center mb-4">
+        <div className="d-flex justify-content-between align-items-center mb-0">
             <div>
                 <span className="fs-4">{label}</span>
             </div>
             <div className="d-flex justify-content-between align-items-center mb-4">
-                {/* <form className="d-flex">
+                {/* <form className="d-flex m-4">
                     <input
                         className="form-control me-2"
                         type="search"
@@ -45,7 +45,12 @@ const SortBy = ({ label, onSort }) => {
                         >
                             Сначало дорогие
                         </Link>
-                        <Link className="dropdown-item">По популярности</Link>
+                        <Link
+                            className="dropdown-item"
+                            onClick={() => onSort("bookmark")}
+                        >
+                            По популярности
+                        </Link>
                     </div>
                 </div>
             </div>

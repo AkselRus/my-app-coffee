@@ -90,7 +90,6 @@ export const updateProduct = (payload) => async (dispatch) => {
     try {
         const { content } = await productService.update(payload);
         dispatch(productUpdate(content));
-        window.location.assign("/admin");
     } catch (error) {
         dispatch(updateProductFailed(error.message));
     }
@@ -105,6 +104,7 @@ export const deleteProduct = (productId) => async (dispatch) => {
         dispatch(removeProductFailed(error.message));
     }
 };
+export const toogleBookmark = (productId) => (dispatch) => {};
 
 export const getProductsList = () => (state) => state.products.entities;
 export const getProductById = (productId) => (state) => {

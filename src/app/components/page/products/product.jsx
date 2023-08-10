@@ -1,21 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCategoryById } from "../../../store/categories";
+import { updateProduct } from "../../../store/products";
 
 const Product = ({ data, onClick }) => {
+    const dispatch = useDispatch();
+    const [bookmark, setBookmark] = useState(data.bookmark);
     const categori = useSelector(getCategoryById(data?.categories));
+    const toogleBookmark = () => {
+        setBookmark((prev) => !prev);
+        const newObject = { ...data, bookmark: !data.bookmark };
+        dispatch(updateProduct(newObject));
+        console.log("data ", data);
+    };
+
     if (categori && data) {
         return (
             <>
                 <div className=" col-md-4 p-2">
-                    <div className="card m-2 h-100 shadow bg-body-tertiary ">
+                    <div
+                        className="card m-2 h-100 shadow bg-body-tertiary "
+                        style={{ minWidth: "100%" }}
+                    >
+                        <button
+                            className="position-absolute top-0 end-0 btn btn-light btn-sm"
+                            onClick={toogleBookmark}
+                        >
+                            <i
+                                className={
+                                    "bi bi-heart" + (bookmark ? "-fill" : " ")
+                                }
+                            ></i>
+                        </button>
                         <img
                             src={data.image}
                             className="card-img-top"
-                            width="350"
-                            height="350"
+                            height="250px"
+                            // style={{ height: "100", with: "100" }}
                             alt="icon"
                         />
 
@@ -39,56 +62,47 @@ const Product = ({ data, onClick }) => {
                                 </a>
                             </div>
                         </div>
-                        <p className="card-text text-end mx-2">
-                            <small className="text-muted">
-                                {`id: ${data.id}`}
-                            </small>
-                        </p>
                     </div>
                 </div>
             </>
         );
     }
-
-    // {/* return (
-    //     <div className="card mb-3 ">
-    //         <div className="card-body position-relative">
-    //             <div className="d-flex text-muted pt-3">
-    //                 <img
-    //                     src={data?.image}
-    //                     width="100"
-    //                     height="100"
-    //                     className="rounded float-start bd-placeholder-img flex-shrink-0 me-2 rounded"
-    //                     alt="..."
-    //                 ></img>
-
-    //                 <div className="pb-3 mb-0 small lh-sm w-100">
-    //                     <div className="d-flex justify-content-between">
-    //                         <strong>{data?.name}</strong>
-    //                     </div>
-    //                     {/* <span className="d-block">{`Описание ${data.description}`}</span> */}
-    //                     <span className="d-block">{`Количество: ${data?.quantity}`}</span>
-    //                     <span className="d-block">{`Категория: ${
-    //                         categori && categori?.name
-    //                     }`}</span>
-    //                     <span className="d-block">{`Цена: ${data?.price}`}</span>
-    //                     <div className="d-flex justify-content-end">
-    //                         <a
-    //                             type="button"
-    //                             className="btn btn-primary"
-    //                             href={`/product/${data?.id}`}
-    //                         >
-    //                             Открыть карточку
-    //                         </a>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </div>
-    // ); */}
 };
 Product.propTypes = {
     data: PropTypes.object,
     onClick: PropTypes.func
 };
 export default Product;
+
+// import React from "react";
+// import PropTypes from "prop-types";
+// import { Col, Card, Button } from "react-bootstrap";
+
+// const Product = ({ data, onClick }) => {
+//     return (
+//         <div className="col-md-4">
+//             <Col sm={3}>
+//                 <Card style={{ width: "18rem" }}>
+//                     <Card.Img variant="top" src={data.image} />
+//                     <Card.Body>
+//                         <Card.Title>Card Title</Card.Title>
+//                         <div className="d-flex align-items-end">
+//                             <Card.Text>Card Text</Card.Text>
+//                             <Button
+//                                 variant="secondary"
+//                                 onClick={() => onClick(data)}
+//                             >
+//                                 <i className="bi bi-cart"></i>
+//                             </Button>
+//                         </div>
+//                     </Card.Body>
+//                 </Card>
+//             </Col>
+//         </div>
+//     );
+// };
+// Product.propTypes = {
+//     data: PropTypes.object,
+//     onClick: PropTypes.func
+// };
+// export default Product;

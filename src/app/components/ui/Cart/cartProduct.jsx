@@ -7,9 +7,10 @@ import { getCategoryById } from "../../../store/categories";
 const CartProduct = ({ item, onClick }) => {
     const prod = useSelector(getProductById(item.prodId));
     const category = useSelector(getCategoryById(prod?.categories));
-    return (
-        prod &&
-        category && (
+    console.log("prod", prod);
+    console.log("item", item);
+    if (prod) {
+        return (
             <div>
                 <div className="card mb-3 ">
                     <div className="card-body position-relative">
@@ -19,8 +20,9 @@ const CartProduct = ({ item, onClick }) => {
                                     <img
                                         src={prod.image}
                                         className="img-fluid rounded-3"
-                                        alt="Shopping item"
-                                        width="65"
+                                        alt="Image product"
+                                        width="80"
+                                        height="90"
                                     />
                                 </div>
                                 <div className="p-2 text-wrap">
@@ -58,8 +60,8 @@ const CartProduct = ({ item, onClick }) => {
                     </div>
                 </div>
             </div>
-        )
-    );
+        );
+    } else return "Корзина пуста";
 };
 CartProduct.propTypes = {
     item: PropTypes.object,

@@ -41,18 +41,18 @@ const ProductTable = ({ products, onSort, selectedSort }) => {
         },
         price: { path: "price", name: "Цена" },
         quantity: { path: "quantity", name: "Кол-во" },
-        image: {
-            // path: "image",
-            name: "Фото",
-            component: (products) => (
-                <button
-                    onClick={() => console.log(products.id)}
-                    className="btn btn-secondary"
-                >
-                    <i className="bi bi-camera"></i>
-                </button>
-            )
-        },
+        // image: {
+        //     // path: "image",
+        //     name: "Фото",
+        //     component: (products) => (
+        //         <button
+        //             onClick={() => console.log(products.id)}
+        //             className="btn btn-secondary"
+        //         >
+        //             <i className="bi bi-camera"></i>
+        //         </button>
+        //     )
+        // },
         update: {
             name: "Изменить",
             component: (products) => (

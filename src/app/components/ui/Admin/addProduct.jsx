@@ -3,6 +3,7 @@ import { validator } from "../../../utils/validator";
 import TextField from "../../common/form/textField";
 import TextAreaField from "../../common/form/textAreaField";
 import SelectField from "../selectField";
+import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
 import {
     createProduct,
@@ -13,26 +14,21 @@ import { getCategories } from "../../../store/categories";
 import { useParams } from "react-router-dom";
 import { MyUploadButton } from "../../UpLoader";
 
-const AddProduct = () => {
-    // const uploader = Uploader({
-    //     apiKey: "free"
-    // });
-    // const options = { multi: true };
+const defaultData = {
+    id: nanoid(),
+    name: "",
+    quantity: "",
+    categories: "",
+    description: "",
+    bookmark: false,
+    price: "",
+    image: "https://brend-mebel.ru/image/no_image.jpg"
+};
 
+const AddProduct = () => {
     const dispatch = useDispatch();
     const { prodId } = useParams();
     const [selectedImage, setSelectedImage] = useState(null);
-    console.log("selectedImage", selectedImage);
-
-    const defaultData = {
-        id: Date.now().toString(),
-        name: "",
-        quantity: "",
-        categories: "",
-        description: "",
-        price: "",
-        image: "https://brend-mebel.ru/image/no_image.jpg"
-    };
 
     const productEditPage = useSelector(getProductById(prodId));
     const categories = useSelector(getCategories());
@@ -93,6 +89,7 @@ const AddProduct = () => {
             const newData = { ...data, image: selectedImage[0].fileUrl };
             console.log("newData", newData);
             dispatch(createProduct(newData));
+            window.location.assign("/admin");
         } else dispatch(createProduct(data));
     };
     const handleSubmitUpdate = async (e) => {
@@ -102,6 +99,7 @@ const AddProduct = () => {
             const newData = { ...data, image: selectedImage[0].fileUrl };
             console.log("newData", newData);
             dispatch(updateProduct(newData));
+            window.location.assign("/admin");
         } else dispatch(updateProduct(data));
     };
     return (

@@ -7,6 +7,7 @@ import ProductList from "../../page/products/productList";
 import MainCategory from "./mainCategory";
 // import Search from "../Search";
 import SpinerLoader from "../../SpinerLoader";
+import Carusel from "../../Carusel";
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const MainPage = () => {
                             handleChange={handleSearchProd}
                             serch={searchProd}
                         /> */}
+                        <Carusel />
                         <MainCategory
                             label="Категории"
                             selectedCateg={selectedCateg}

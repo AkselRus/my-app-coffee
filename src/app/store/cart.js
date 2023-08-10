@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import userService from "../services/user.service";
-import history from "../utils/hystory";
 
 const cartSlice = createSlice({
     name: "cart",
@@ -32,7 +31,7 @@ const cartSlice = createSlice({
             state.entities = state.entities.filter(
                 (p) => p.prodId === action.payload
             );
-            state.isLoading = false;
+            // state.isLoading = false;
         },
         incrementCount: (state, action) => {
             const elIndex = state.entities.findIndex(
@@ -76,9 +75,9 @@ export const loadCartList = () => async (dispatch) => {
     }
 };
 export const removeProdCart = (payload) => async (dispatch) => {
-    dispatch(cartRequested());
-    dispatch(removeItemCart(payload));
+    // dispatch(cartRequested());
     try {
+        dispatch(removeItemCart(payload));
         await userService.deleteItemPurchases(payload);
     } catch (error) {
         dispatch(addError(error.message));
@@ -100,7 +99,7 @@ export const addInCartBy = (payload) => async (dispatch) => {
 };
 
 export const clearShopingCart = () => async (dispatch) => {
-    history.push("/finish_pay");
+    window.location.assign("/finish_pay");
     dispatch(removeAll());
     try {
         await userService.deleteAllPurchases();
