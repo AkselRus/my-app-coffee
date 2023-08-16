@@ -1,0 +1,112 @@
+[
+    {
+      "bookmark": true,
+      "categories": "67rdca3eeb7f6fgeed471820",
+      "description": "Воздушный шоколадный бисквит с ароматным марципаном пропитан сахарным сиропом с ликером Какао, прослоен бархатистым шоколадно-сливочным кремом и сладким яблочным повидлом. Сверху пирожное декорировано шоколадно-сахарной глазурью.",
+      "id": "8ItpqUhLDF_J4DEtLz_7g",
+      "image": "https://upcdn.io/W142hJk/image/demo/4mEhC7HEKb.jpeg.crop?w=600&h=600&fit=max&q=70",
+      "name": "Прага",
+      "price": "235",
+      "quantity": "1"
+    },
+     {
+      "bookmark": false,
+      "categories": "67rdca3eeb7f6fgeed471818",
+      "description": "Бамбл кофе – это экзотический микс крепкого эспрессо с апельсиновым соком.",
+      "id": "EIXaB7OwnC2CcUUp94LdE",
+      "image": "https://upcdn.io/W142hJk/image/demo/4mFX92MBLS.jpg.crop?w=600&h=600&fit=max&q=70",
+      "name": "Бамбл кофе",
+      "price": "210",
+      "quantity": "1"
+    },
+     {
+      "bookmark": false,
+      "categories": "67rdca3eeb7f6fgeed471824",
+      "description": "Княжеское печенье - это высококачественное печенье, приготовленное по лучшим технологиям, из тщательно отобранного сырья.",
+      "id": "HfbtixxEtyZ5ZiW9FFXZD",
+      "image": "https://upcdn.io/W142hJk/image/demo/4mFUyiycK6.jpg.crop?w=600&h=600&fit=max&q=70",
+      "name": "Княжеское печенье ",
+      "price": "120",
+      "quantity": "1"
+    },
+     {
+      "bookmark": false,
+      "categories": "67rdca3eeb7f6fgeed471822",
+      "description": "Круасса́н (фр. croissant — «полумесяц») — небольшое хлебобулочное, булочка в форме полумесяца (рогалика) из слоёного теста",
+      "id": "QpxJhjUZfqf6qMHBpon6q",
+      "image": "https://upcdn.io/W142hJk/image/demo/4mFQh2ybEq.jpg.crop?w=600&h=600&fit=max&q=70",
+      "name": "Круассан",
+      "price": "115",
+      "quantity": "1"
+    },
+     {
+      "bookmark": false,
+      "categories": "67rdca3eeb7f6fgeed471814",
+      "description": "Сэндвич крок-месье — традиционный французский завтрак наряду с круассанами, кофе и фруктами. Он готовится из мягкого, поджаренного до хрустящей корочки пористого хлеба, нежного сыра, ломтиков ветчины и соуса бешамель, который придаёт сэндвичу сочность и особую пикантность. Особенно вкусно с горячим чаем или кофе.",
+      "id": "SuqS5ABxpqQgusE7cXdip",
+      "image": "https://upcdn.io/W142hJk/raw/demo/4mFbjqPoJk.jpg",
+      "name": "Сэндвич крок-месье с ветчиной",
+      "price": "250",
+      "quantity": "1"
+    },
+    {
+      "bookmark": false,
+      "categories": "67rdca3eeb7f6fgeed471814",
+      "description": "хз",
+      "id": "TJ69H0OBTotaKuyv6vaT0",
+      "image": "https://upcdn.io/W142hJk/raw/demo/4mFUy66o83.jpg",
+      "name": "Сэндвич с тунцом",
+      "price": "155",
+      "quantity": "1"
+    },
+    {
+      "bookmark": true,
+      "categories": "67rdca3eeb7f6fgeed471818",
+      "description": "Капучи́но — кофейный напиток итальянской кухни на основе эспрессо с добавлением в него подогретого вспененного молока.",
+      "id": "dFu3yciVPLkWpgiPOeg3G",
+      "image": "https://upcdn.io/W142hJk/raw/demo/4mFbk54TAL.png",
+      "name": "Капучино",
+      "price": "179",
+      "quantity": "1"
+    },
+     {
+      "bookmark": true,
+      "categories": "67rdca3eeb7f6fgeed471818",
+      "description": "Freshly squeezed orange juice",
+      "id": "fAg-nZD9BHPdJka7opjV2",
+      "image": "https://upcdn.io/W142hJk/image/demo/4mFVBk2g35.jpg.crop?w=600&h=600&fit=max&q=70",
+      "name": "Orange juice",
+      "price": "290",
+      "quantity": "1"
+    },
+    {
+      "bookmark": true,
+      "categories": "67rdca3eeb7f6fgeed471820",
+      "description": "Наполеон – это слоёный торт или пирожное с кремом. Готовится из слоёного теста с кремовой прокладкой. Рецепт его был разработан во второй половине 19 века",
+      "id": "j0xVdsCGc6n7bdosbJs2i",
+      "image": "https://upcdn.io/W142hJk/raw/demo/4mEhB2T67W.jpg",
+      "name": "Наполеон ",
+      "price": "270",
+      "quantity": "1"
+    },
+     {
+      "bookmark": true,
+      "categories": "67rdca3eeb7f6fgeed471820",
+      "description": "Традиционное пирожное, приготовленное в лучших традициях советской кухни. Нежный бисквит, перетёртый в мелкую крошку, прекрасно сочетается со сливочным кремом, обладает насыщенным вкусом тёмного шоколада с нотками терпкого миндаля и сладкой ванили.",
+      "id": "jT3vE2QDYFYCTceKvH9sZ",
+      "image": "https://upcdn.io/W142hJk/raw/demo/4mFUwWih3Y.jpg",
+      "name": "Пирожное «Картошка»",
+      "price": "99",
+      "quantity": "1"
+    },
+     {
+      "bookmark": true,
+      "categories": "67rdca3eeb7f6fgeed471820",
+      "description": "Медовик представляет собой квадратное пирожное с идеально ровными краями.",
+      "id": "qR-m2hhHtB81BORUCWzIW",
+      "image": "https://upcdn.io/W142hJk/raw/demo/4mEhBDBvEt.jpg",
+      "name": "Медовик",
+      "price": "199",
+      "quantity": "1"
+    }
+]

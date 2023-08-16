@@ -1,0 +1,30 @@
+{
+  "name": "diplom-project",
+  "version": "1.0.0",
+  "description": "my first app",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node app.js",
+    "serve": "cross-env NODE_ENV=development nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkselRus/my-app-coffee.git"
+  },
+  "author": "Alex Gilev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AkselRus/my-app-coffee/issues"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "config": "^3.3.9",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.3"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.0.1"
+  },
+  "homepage": "https://github.com/AkselRus/my-app-coffee#readme"
+}
