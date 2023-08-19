@@ -7,7 +7,6 @@ const schema = new Schema(
         password: { type: String },
         image: String,
         birthDay: Number,
-        rate: Number,
         sex: { type: String, enum: ["male", "female", "other"] },
         purchases: [{ type: Schema.Types.ObjectId, ref: "Product" }],
     },
