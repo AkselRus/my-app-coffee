@@ -29,7 +29,7 @@ router.patch("/:prodId", auth, async (req, res) => {
 router.put("/", auth, async (req, res) => {
     try {
         const newProd = Product.create({ ...req.body });
-        res.status(201).send({ prodId: newProd.id });
+        res.status(201).send({ prodId: newProd._id });
     } catch (error) {
         res.status(500).json({
             massage: "На сервере произошла ошибка. Попробуйте позже",

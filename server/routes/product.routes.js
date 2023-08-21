@@ -1,18 +1,49 @@
 const express = require("express");
 const Product = require("../models/Product");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 // const auth = require("../middleware/auth.middleware");
 const router = express.Router({ mergeParams: true });
 
-router.get("/:prodId", async (req, res) => {
+router.patch("/:prodId", async (req, res) => {
     try {
         const { prodId } = req.params;
 
         if (prodId) {
-            const product = await Product.findById(prodId);
-            res.send(product);
+            const updateProd = await Product.findByIdAndUpdate(
+                prodId,
+                req.body,
+                {
+                    new: true,
+                }
+            );
+            console.log(updateProd);
+            res.send(updateProd);
         } else {
             res.status(401).json({ message: "Unauthorized" });
         }
+    } catch (error) {
+        res.status(500).json({
+            massage: "На сервере произошла ошибка. Попробуйте позже",
+        });
+    }
+});
+
+router.post("/", upload.single("avatar"), async (req, res) => {
+    try {
+        const newProd = Product.create({ ...req.body });
+        res.status(201).send({ prodId: newProd._id });
+    } catch (error) {
+        res.status(500).json({
+            massage: "На сервере произошла ошибка. Попробуйте позже",
+        });
+    }
+});
+
+router.delete("/:prodId", async (req, res) => {
+    try {
+        const { prodId } = req.params;
+        await Product.findById(prodId);
     } catch (error) {
         res.status(500).json({
             massage: "На сервере произошла ошибка. Попробуйте позже",
