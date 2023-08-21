@@ -49,7 +49,7 @@ const ProductList = ({ data, handleClic, setCateg, count }) => {
                         <div className="row w-100 ">
                             {sort?.map((p) => (
                                 <Product
-                                    key={p.id}
+                                    key={p._id}
                                     data={p}
                                     onClick={handleClic}
                                 />

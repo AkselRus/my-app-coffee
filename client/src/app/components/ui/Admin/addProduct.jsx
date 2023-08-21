@@ -3,7 +3,7 @@ import { validator } from "../../../utils/validator";
 import TextField from "../../common/form/textField";
 import TextAreaField from "../../common/form/textAreaField";
 import SelectField from "../selectField";
-import { nanoid } from "nanoid";
+// import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
 import {
     createProduct,
@@ -15,7 +15,7 @@ import { useParams } from "react-router-dom";
 import { MyUploadButton } from "../../UpLoader";
 
 const defaultData = {
-    id: nanoid(),
+    // _id: nanoid(),
     name: "",
     quantity: "",
     categories: "",
@@ -34,10 +34,11 @@ const AddProduct = () => {
     const categories = useSelector(getCategories());
     const test = prodId ? productEditPage : defaultData;
     const [data, setData] = useState(test);
+    console.log(data);
     const [errors, setErrors] = useState({});
     const categoriesList = categories?.map((q) => ({
         label: q.name,
-        value: q.id
+        value: q._id
     }));
     const handleChange = (target) => {
         setData((prevState) => ({
@@ -86,7 +87,7 @@ const AddProduct = () => {
         const isValid = validate();
         if (!isValid) return;
         if (selectedImage) {
-            const newData = { ...data, image: selectedImage[0].fileUrl };
+            const newData = await { ...data, image: selectedImage[0].fileUrl };
             console.log("newData", newData);
             dispatch(createProduct(newData));
             window.location.assign("/admin");
@@ -96,7 +97,7 @@ const AddProduct = () => {
         e.preventDefault();
         console.log("handleSubmitUpdate");
         if (selectedImage) {
-            const newData = { ...data, image: selectedImage[0].fileUrl };
+            const newData = await { ...data, image: selectedImage[0].fileUrl };
             console.log("newData", newData);
             dispatch(updateProduct(newData));
             window.location.assign("/admin");
@@ -111,6 +112,7 @@ const AddProduct = () => {
                         <TextField
                             label="Название товара"
                             name="name"
+                            type="text"
                             value={data.name}
                             onChange={handleChange}
                             error={errors.name}
@@ -118,13 +120,14 @@ const AddProduct = () => {
                         <TextField
                             label="Количество товара"
                             name="quantity"
-                            type="number"
+                            // type="number"
                             value={data.quantity}
                             onChange={handleChange}
                             error={errors.quantity}
                         />
                         <TextAreaField
                             label="Описание товара"
+                            type="text"
                             name="description"
                             value={data.description}
                             onChange={handleChange}
@@ -141,18 +144,22 @@ const AddProduct = () => {
                         />
                         <TextField
                             label="Стоимость товара"
-                            type="number"
+                            // type="number"
                             name="price"
                             value={data.price}
                             onChange={handleChange}
                             error={errors.price}
                         />
 
-                        <MyUploadButton setFiles={setSelectedImage} />
+                        <MyUploadButton
+                            name="avatar"
+                            setFiles={setSelectedImage}
+                        />
                         {selectedImage && (
                             <div className="card-body m-2 border border-primary rounded">
                                 <img
                                     alt="not found"
+                                    name="avatar"
                                     width={"250px"}
                                     className="card-img-top"
                                     src={selectedImage[0].fileUrl}

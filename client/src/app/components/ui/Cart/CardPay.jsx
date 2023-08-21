@@ -13,7 +13,7 @@ const CardPay = () => {
             <div className="d-flex justify-content-between align-items-center mb-4">
                 <h5 className="mb-0">Card details</h5>
                 <img
-                    src={currentUser.image}
+                    src={currentUser?.image}
                     className="img-fluid rounded-3"
                     width="45"
                     alt="Avatar"

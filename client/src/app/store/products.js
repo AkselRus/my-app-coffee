@@ -36,13 +36,13 @@ const productsSlice = createSlice({
         },
         productUpdate: (state, action) => {
             const elIndex = state.entities.findIndex(
-                (u) => u.id === action.payload.id
+                (u) => u._id === action.payload._id
             );
             state.entities[elIndex] = action.payload;
         },
         remove: (state, action) => {
             state.entities = state.entities.filter(
-                (product) => product.id !== action.payload
+                (product) => product._id !== action.payload
             );
         }
     }
@@ -77,7 +77,10 @@ export function createProduct(payload) {
     return async function (dispatch) {
         dispatch(productCreateRequested());
         try {
+            console.log("payload", payload);
             const { content } = await productService.create(payload);
+            console.log("content", content);
+
             dispatch(productCreated(content));
             window.location.assign("/admin");
         } catch (error) {
@@ -103,7 +106,6 @@ export const deleteProduct = (productId) => async (dispatch) => {
         dispatch(removeProductFailed(error.message));
     }
 };
-export const toogleBookmark = (productId) => (dispatch) => {};
 
 export const getListBookMark = () => (state) => {
     const arr = state.products.entities?.filter((e) => e.bookmark === true);
@@ -113,7 +115,7 @@ export const getListBookMark = () => (state) => {
 export const getProductsList = () => (state) => state.products.entities;
 export const getProductById = (productId) => (state) => {
     if (state.products.entities) {
-        return state.products.entities.find((u) => u.id === productId);
+        return state.products.entities.find((u) => u._id === productId);
     }
 };
 

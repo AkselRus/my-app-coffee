@@ -19,6 +19,7 @@ import ProductCard from "./components/page/products/ProductCard";
 import ProductEditPage from "./components/page/products/productEditPage";
 
 function App() {
+    console.log(localStorage);
     return (
         <div className="container">
             <AppLoader>
@@ -41,27 +42,16 @@ function App() {
                         <Route index element={<AdminPanel />} />
                         <Route path=":prodId/">
                             <Route index element={<ProductEditPage />} />
-                            {/* <Route path="profile" element={<User />} />
-                        <Route path="edit" element={<Edit />} />
-                        <Route path="*" element={<Navigate to="profile" />} /> */}
                         </Route>
                     </Route>
 
-                    {/* <Route path="admin/" element={<AdminPanel />}>
-                        <Route index element={<Navigate to="" />} />
-                        <Route
-                            path="/admin/:prodId"
-                            element={<ProductEditPage />}
-                        />
-                        <Route path="*" element={<Navigate to="admin/" />} />
-                    </Route> */}
-
-                    <Route path="users/*" element={<Users />}>
-                        <Route index element={<Navigate to="" />} />
-                        <Route path=":userId" element={<UserPage />} />
-                        <Route path=":userId/edit" element={<EditUserPage />} />
-                        <Route path="*" element={<Navigate to="users" />} />
+                    <Route path="user/*" element={<Users />}>
+                        <Route index element={<UserPage />} />
+                        <Route path=":userId/">
+                            <Route index element={<EditUserPage />} />
+                        </Route>
                     </Route>
+
                     <Route path="product/*" element={<ProductCard />}>
                         <Route index element={<ProductList />} />
                         <Route path=":prodId" element={<ProductCard />} />

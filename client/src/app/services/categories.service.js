@@ -1,6 +1,6 @@
 import httpService from "./http.service";
 
-const categoriesEndpoint = "categories/";
+const categoriesEndpoint = "category/";
 
 const categoriesService = {
     get: async () => {

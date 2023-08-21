@@ -23,7 +23,9 @@ const ProductCard = () => {
     };
 
     const handleClickPay = (data) => {
-        dispatch(addInCartBy({ prodId: data.id, count: 1, price: data.price }));
+        dispatch(
+            addInCartBy({ prodId: data._id, count: 1, price: data.price })
+        );
     };
     if (product) {
         return (
@@ -62,9 +64,6 @@ const ProductCard = () => {
                                     </p>
                                 </div>
                                 <div className="d-flex align-items-end p-2">
-                                    {/* <p>
-                                        <small>id {product.id}</small>
-                                    </p> */}
                                     <button
                                         className="btn btn-primary ms-auto position-absolute bottom-0 end-0"
                                         onClick={() => handleClickPay(product)}

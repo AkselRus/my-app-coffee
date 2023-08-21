@@ -35,10 +35,10 @@ const navBar = () => {
                 id="offcanvasRight"
                 aria-labelledby="offcanvasRightLabel"
             >
-                {user && (
+                {
                     <>
                         <div className="offcanvas-header">
-                            <h5 id="offcanvasRightLabel">{user.name}</h5>
+                            <h5 id="offcanvasRightLabel">{user?.name}</h5>
                             <button
                                 type="button"
                                 className="btn-close text-reset"
@@ -52,13 +52,18 @@ const navBar = () => {
                             {listBookmark && (
                                 <ul>
                                     {listBookmark.map((el) => (
-                                        <li key={el.id}>{el.name}</li>
+                                        <li
+                                            key={el._id}
+                                            className="list-group-item"
+                                        >
+                                            {el.name}
+                                        </li>
                                     ))}
                                 </ul>
                             )}
                         </div>
                     </>
-                )}
+                }
             </div>
 
             <Navbar

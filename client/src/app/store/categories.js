@@ -55,7 +55,7 @@ export const getCategoriesLoadingStatus = () => (state) =>
 export const getCategoryById = (categoryId) => (state) => {
     if (state.categories.entities) {
         for (const category of state.categories.entities) {
-            if (category.id === categoryId) {
+            if (category._id === categoryId) {
                 return category;
             }
         }

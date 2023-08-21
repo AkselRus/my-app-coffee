@@ -13,7 +13,7 @@ import { deleteProduct } from "../../../store/products";
 const ProductTable = ({ products, onSort, selectedSort }) => {
     const dispatch = useDispatch();
     const columns = {
-        id: {
+        _id: {
             name: "id",
             component: (prod) => (
                 <Popup
@@ -24,7 +24,7 @@ const ProductTable = ({ products, onSort, selectedSort }) => {
                     }
                     position="right center"
                 >
-                    <div>{prod.id}</div>
+                    <div>{prod._id}</div>
                 </Popup>
             )
         },
@@ -32,7 +32,10 @@ const ProductTable = ({ products, onSort, selectedSort }) => {
             path: "name",
             name: "Имя",
             component: (prod) => (
-                <Link to={`/product/${prod.id}`} className="nav-link text-dark">
+                <Link
+                    to={`/product/${prod._id}`}
+                    className="nav-link text-dark"
+                >
                     {prod.name}
                 </Link>
             )
@@ -69,7 +72,7 @@ const ProductTable = ({ products, onSort, selectedSort }) => {
             name: "Изменить",
             component: (products) => (
                 <Link
-                    to={`/admin/${products.id}`}
+                    to={`/admin/${products._id}`}
                     className="btn btn-secondary ms-3"
                 >
                     <i className="bi bi-gear"></i>
@@ -80,7 +83,7 @@ const ProductTable = ({ products, onSort, selectedSort }) => {
             name: "Действие",
             component: (products) => (
                 <button
-                    onClick={() => dispatch(deleteProduct(products.id))}
+                    onClick={() => dispatch(deleteProduct(products._id))}
                     className="btn btn-danger"
                 >
                     delete

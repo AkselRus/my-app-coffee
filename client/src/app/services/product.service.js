@@ -2,24 +2,17 @@ import httpService from "./http.service";
 const productEndpoint = "product/";
 
 const productService = {
-    fetchAll: async () => {
-        const { data } = await httpService.get(productEndpoint);
-        return data;
-    },
     get: async () => {
         const { data } = await httpService.get(productEndpoint);
         return data;
     },
     create: async (payload) => {
-        const { data } = await httpService.put(
-            productEndpoint + payload.id,
-            payload
-        );
+        const { data } = await httpService.post(productEndpoint, payload);
         return data;
     },
     update: async (payload) => {
         const { data } = await httpService.patch(
-            productEndpoint + payload.id,
+            productEndpoint + payload._id,
             payload
         );
         return data;

@@ -5,7 +5,6 @@ import { addInCartBy } from "../../../store/cart";
 
 import ProductList from "../../page/products/productList";
 import MainCategory from "./mainCategory";
-// import Search from "../Search";
 import SpinerLoader from "../../SpinerLoader";
 import Carusel from "../../Carusel";
 
@@ -26,7 +25,9 @@ const MainPage = () => {
         setSelectedCateg();
     };
     const handleClickPay = (data) => {
-        dispatch(addInCartBy({ prodId: data.id, count: 1, price: data.price }));
+        dispatch(
+            addInCartBy({ prodId: data._id, count: 1, price: data.price })
+        );
     };
 
     if (products) {
@@ -38,11 +39,7 @@ const MainPage = () => {
                           .indexOf(searchProd.toLowerCase()) !== -1
               )
             : selectedCateg
-            ? products.filter(
-                  (prod) =>
-                      JSON.stringify(prod.categories) ===
-                      JSON.stringify(selectedCateg.id)
-              )
+            ? products.filter((prod) => prod.categories === selectedCateg._id)
             : products;
 
         // const newProducts = selectedCateg ? filteredProducts : products;

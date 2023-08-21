@@ -68,8 +68,9 @@ const {
 export const loadCartList = () => async (dispatch) => {
     dispatch(cartRequested());
     try {
-        const { content } = await userService.getCart();
-        dispatch(cartReceved(content));
+        const { content } = await userService.getCurrentUser();
+        console.log(content);
+        dispatch(cartReceved(content.purchases));
     } catch (error) {
         dispatch(cartRequesFailed(error.message));
     }
@@ -90,9 +91,16 @@ export const amountCart = (payload) => (state) => {
     return sum;
 };
 export const addInCartBy = (payload) => async (dispatch) => {
-    dispatch(addInCart(payload));
     try {
-        await userService.addCart(payload);
+        dispatch(addInCart(payload));
+        console.log("addInCartBy", payload);
+        // const newData = {
+        //     ...state.user.entities,
+        //     purchases: state.cart.entities
+        // };
+        // console.log("newData", newData);
+
+        await userService.update(payload);
     } catch (error) {
         dispatch(addError(error.message));
     }

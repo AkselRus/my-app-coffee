@@ -1,5 +1,5 @@
 export function displayDate(data) {
-    const date = new Date(parseInt(data));
+    const date = new Date(data);
     const dateNow = new Date();
     const yearDif = dateNow.getFullYear() - date.getFullYear();
     if (yearDif === 0) {
@@ -19,7 +19,10 @@ export function displayDate(data) {
             return `${date.getHours()}:${date.getMinutes()}`;
         }
 
-        return date.toLocaleString("default", { month: "long", day: "numeric" });
+        return date.toLocaleString("default", {
+            month: "long",
+            day: "numeric"
+        });
     }
     return (
         date.getFullYear() + "." + (date.getMonth() + 1) + "_" + date.getDate()

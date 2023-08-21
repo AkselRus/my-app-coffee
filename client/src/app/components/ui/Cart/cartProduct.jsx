@@ -46,7 +46,7 @@ const CartProduct = ({ item, onClick }) => {
                                 <a
                                     type="button"
                                     className="p-3 mb-0"
-                                    onClick={() => onClick(prod.id)}
+                                    onClick={() => onClick(prod._id)}
                                 >
                                     <i
                                         className="btn btn-danger btn-sm bi bi-trash text-white"

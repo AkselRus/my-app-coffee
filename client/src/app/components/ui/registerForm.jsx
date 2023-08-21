@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { validator } from "../../utils/validator";
 import TextField from "../common/form/textField";
+// import { nanoid } from "nanoid";
 import { useDispatch } from "react-redux";
 // import SelectField from "../common/form/selectField";
 import RadioField from "../common/form/radioField";
@@ -12,6 +13,7 @@ import { Link } from "react-router-dom";
 const RegisterForm = () => {
     const dispatch = useDispatch();
     const [data, setData] = useState({
+        // id: nanoid(),
         email: "",
         password: "",
         sex: "male",

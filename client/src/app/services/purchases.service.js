@@ -5,7 +5,7 @@ const userPurchases = "purchases/";
 const purchasesService = {
     create: async (payload) => {
         const { data } = await httpService.put(
-            "user/" + payload.id + userPurchases + payload.id,
+            "user/" + payload._id + userPurchases + payload._id,
             payload
         );
         return data;

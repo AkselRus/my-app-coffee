@@ -3,20 +3,20 @@ import PropTypes from "prop-types";
 
 const NavProduct = ({ items, onItemSelect, selectedItem, onClick }) => {
     function MouseOver(event) {
-        event.target.style.background = "red";
+        event.target.style.background = "silver";
     }
     function MouseOut(event) {
         event.target.style.background = "";
     }
     return (
-        <div className="list-group list-group-flush border-bottom scrollarea">
+        <div className="list-group list-group-flush scrollarea">
             {items.map((item) => (
                 <a
                     className={
-                        "list-group-item list-group-item-action lh-tight border-bottom" +
+                        "list-group-item list-group-item-action rounded-pill lh-tight" +
                         (item === selectedItem ? " active" : "")
                     }
-                    key={item.id}
+                    key={item._id}
                     aria-current="page"
                     onMouseOver={MouseOver}
                     onMouseOut={MouseOut}
@@ -26,7 +26,14 @@ const NavProduct = ({ items, onItemSelect, selectedItem, onClick }) => {
                     {item.name}
                 </a>
             ))}
-            <a className="nav-link m-2 mx-auto" onClick={() => onClick()}>
+            <a
+                className={
+                    "list-group-item list-group-item-action rounded-pill lh-tight border-bottom"
+                }
+                onMouseOver={MouseOver}
+                onMouseOut={MouseOut}
+                onClick={() => onClick()}
+            >
                 Сбросить
             </a>
         </div>
