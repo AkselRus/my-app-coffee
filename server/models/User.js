@@ -9,7 +9,14 @@ const schema = new Schema(
         birthDay: { type: Date },
         licence: { type: Boolean },
         sex: { type: String, enum: ["male", "female", "other"] },
-        purchases: [{ type: Schema.Types.ObjectId, ref: "Product" }],
+        // purchases: [{ type: Schema.Types.ObjectId, ref: "Product" }],
+        purchases: [
+            {
+                count: { type: Number },
+                price: { type: Number },
+                prodId: { type: Schema.Types.ObjectId, ref: "Product" },
+            },
+        ],
     },
     {
         timestamps: true,

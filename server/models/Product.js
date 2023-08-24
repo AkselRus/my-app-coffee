@@ -5,7 +5,7 @@ const schema = new Schema(
         name: { type: String },
         image: { type: String },
         bookmark: { type: Boolean },
-        categories: { type: String },
+        categories: { type: Schema.Types.ObjectId, ref: "Category" },
         category: { type: String },
         description: { type: String },
         price: { type: Number },

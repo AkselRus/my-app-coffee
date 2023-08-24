@@ -1,4 +1,5 @@
 const express = require("express");
+const chalk = require("chalk");
 const User = require("../models/User");
 // const auth = require("../middleware/auth.middleware");
 const router = express.Router({ mergeParams: true });
@@ -41,6 +42,17 @@ router
             });
         }
     });
+// router.delete("/:userId", async (req, res) => {
+//     try {
+//         const { userId } = req.params;
+//         const removedUser = await User.findByIdAndDelete(userId);
+//         console.log("removedUser", removedUser);
+//     } catch (error) {
+//         res.status(500).json({
+//             massage: "На сервере произошла ошибка. Попробуйте позже",
+//         });
+//     }
+// });
 
 router.get("/", async (req, res) => {
     try {

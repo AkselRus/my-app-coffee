@@ -56,7 +56,6 @@ router.post("/signUp", [
             await tokenService.save(newUser._id, tokens.refreshToken);
 
             res.status(201).send({ ...tokens, userId: newUser._id });
-            window.location.assign("/");
         } catch (error) {
             res.status(500).json({
                 massage: "На сервере произошла ошибка. Попробуйте позже",
@@ -66,7 +65,7 @@ router.post("/signUp", [
 ]);
 
 router.post("/signInWithPassword", [
-    check("email", "Email введен некорректно").normalizeEmail().isEmail(),
+    check("email", "Email введен некорректно").isEmail(),
     check("password", "Неправильный пароль").exists(),
     async (req, res) => {
         try {
