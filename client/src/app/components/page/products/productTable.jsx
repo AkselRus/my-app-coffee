@@ -44,17 +44,18 @@ const ProductTable = ({ products, onSort, selectedSort }) => {
             name: "Категория",
             component: (products) => <Category id={products.categories} />
         },
-        price: {
-            path: "price",
-            name: "Цена",
-            component: (prod) => <div className="text-center">{prod.price}</div>
-        },
+
         quantity: {
             path: "quantity",
             name: "Кол-во",
             component: (prod) => (
                 <div className="text-center">{prod.quantity}</div>
             )
+        },
+        price: {
+            path: "price",
+            name: "Цена",
+            component: (prod) => <div className="text-center">{prod.price}</div>
         },
         // image: {
         //     // path: "image",

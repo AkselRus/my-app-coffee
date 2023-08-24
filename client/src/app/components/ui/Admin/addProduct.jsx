@@ -3,7 +3,9 @@ import { validator } from "../../../utils/validator";
 import TextField from "../../common/form/textField";
 import TextAreaField from "../../common/form/textAreaField";
 import SelectField from "../selectField";
-// import { nanoid } from "nanoid";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
     createProduct,
@@ -15,7 +17,6 @@ import { useParams } from "react-router-dom";
 import { MyUploadButton } from "../../UpLoader";
 
 const defaultData = {
-    // _id: nanoid(),
     name: "",
     quantity: "",
     categories: "",
@@ -29,12 +30,12 @@ const AddProduct = () => {
     const dispatch = useDispatch();
     const { prodId } = useParams();
     const [selectedImage, setSelectedImage] = useState(null);
+    console.log(selectedImage);
 
     const productEditPage = useSelector(getProductById(prodId));
     const categories = useSelector(getCategories());
     const test = prodId ? productEditPage : defaultData;
     const [data, setData] = useState(test);
-    console.log(data);
     const [errors, setErrors] = useState({});
     const categoriesList = categories?.map((q) => ({
         label: q.name,
@@ -82,6 +83,18 @@ const AddProduct = () => {
     };
     const isValid = Object.keys(errors).length === 0;
 
+    const notify = () =>
+        toast.info("🦄 Товар обновлен!", {
+            position: "top-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored"
+        });
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const isValid = validate();
@@ -90,7 +103,7 @@ const AddProduct = () => {
             const newData = await { ...data, image: selectedImage[0].fileUrl };
             console.log("newData", newData);
             dispatch(createProduct(newData));
-            window.location.assign("/admin");
+            // window.location.assign("/admin");
         } else dispatch(createProduct(data));
     };
     const handleSubmitUpdate = async (e) => {
@@ -100,13 +113,13 @@ const AddProduct = () => {
             const newData = await { ...data, image: selectedImage[0].fileUrl };
             console.log("newData", newData);
             dispatch(updateProduct(newData));
-            window.location.assign("/admin");
+            // window.location.assign("/admin");
         } else dispatch(updateProduct(data));
     };
     return (
         <div className="col-lg-5">
             <div className="card bg-body text-white">
-                <div className="card-body bg-dark rounded-3">
+                <div className="card-body bg-dark rounded-2">
                     <form onSubmit={prodId ? handleSubmitUpdate : handleSubmit}>
                         <div className="text-center">Add product</div>
                         <TextField
@@ -176,10 +189,12 @@ const AddProduct = () => {
                         <button
                             className="btn btn-primary m-2"
                             type="submit"
+                            onClick={() => notify()}
                             disabled={!isValid}
                         >
                             {prodId ? "Обновить" : "Создать"}
                         </button>
+                        <ToastContainer />
                     </form>
                 </div>
             </div>

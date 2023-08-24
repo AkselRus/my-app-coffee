@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearShopingCart, getShopList } from "../../../store/cart";
+import { clearShopingCart } from "../../../store/cart";
+import { getUser } from "../../../store/users";
 
 const Total = () => {
     const dispatch = useDispatch();
-    const shopList = useSelector(getShopList());
-    console.log("shopList", shopList);
+    const user = useSelector(getUser());
+    const shopList = user.purchases;
 
     const [sum, setSum] = useState(0);
     const newList = shopList
@@ -41,20 +42,16 @@ const Total = () => {
                 <p className="mb-2">Total(Incl. taxes)</p>
                 <p className="mb-2">$4818.00</p>
             </div> */}
-
-                <button
-                    type="button"
-                    className="btn btn-info btn-block btn-lg"
-                    onClick={handleFinish}
-                >
-                    <div className="d-flex justify-content-between">
-                        <span>{`${sum.toFixed(2)}₽ `}</span>
-                        <span>
-                            Checkout
-                            {/* <i className="fas fa-long-arrow-alt-right ms-2"></i> */}
-                        </span>
-                    </div>
-                </button>
+                <div className="d-flex justify-content-end">
+                    <a
+                        type="button"
+                        className="btn btn-info"
+                        onClick={handleFinish}
+                    >
+                        <span>Pay</span>
+                    </a>
+                    {/* <p className="mb-2">{`${sum.toFixed(2)} ₽`}</p> */}
+                </div>
             </>
         )
     );

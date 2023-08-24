@@ -80,7 +80,6 @@ export function createProduct(payload) {
             console.log("payload", payload);
             const { content } = await productService.create(payload);
             console.log("content", content);
-
             dispatch(productCreated(content));
             window.location.assign("/admin");
         } catch (error) {

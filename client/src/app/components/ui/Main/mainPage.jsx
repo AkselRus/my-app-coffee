@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsList } from "../../../store/products";
-import { addInCartBy } from "../../../store/cart";
 
 import ProductList from "../../page/products/productList";
 import MainCategory from "./mainCategory";
 import SpinerLoader from "../../SpinerLoader";
 import Carusel from "../../Carusel";
+import { getUser, updateUser } from "../../../store/users";
 
 const MainPage = () => {
     const dispatch = useDispatch();
     const products = useSelector(getProductsList());
+    const user = useSelector(getUser());
 
     const [searchProd, setSearchProd] = useState("");
     const [selectedCateg, setSelectedCateg] = useState();
@@ -25,9 +26,14 @@ const MainPage = () => {
         setSelectedCateg();
     };
     const handleClickPay = (data) => {
-        dispatch(
-            addInCartBy({ prodId: data._id, count: 1, price: data.price })
-        );
+        const newUser = {
+            ...user,
+            purchases: [
+                ...user.purchases,
+                { prodId: data._id, count: 1, price: data.price }
+            ]
+        };
+        dispatch(updateUser(newUser));
     };
 
     if (products) {
@@ -44,6 +50,7 @@ const MainPage = () => {
 
         // const newProducts = selectedCateg ? filteredProducts : products;
         const count = filteredProducts?.length;
+        console.log("filteredProducts", filteredProducts);
 
         return (
             <>

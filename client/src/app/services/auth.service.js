@@ -3,10 +3,7 @@ import config from "../config.json";
 import localStorageService from "./localStorage.service";
 
 export const httpAuth = axios.create({
-    baseURL: config.apiEndpoint + "/auth/",
-    params: {
-        key: process.env.REACT_APP_FIREBASE_KEY
-    }
+    baseURL: config.apiEndpoint + "/auth/"
 });
 
 const authService = {
@@ -27,6 +24,7 @@ const authService = {
             grant_type: "refresh_token",
             refresh_token: localStorageService.getRefreshToken()
         });
+        console.log("data refresh");
         return data;
     }
 };

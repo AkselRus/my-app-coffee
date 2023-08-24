@@ -8,7 +8,6 @@ import {
 } from "../../../store/users";
 import { loadCategoriesList } from "../../../store/categories";
 import { loadproductsList } from "../../../store/products";
-import { loadCartList } from "../../../store/cart";
 import SpinerLoader from "../../SpinerLoader";
 
 const AppLoader = ({ children }) => {
@@ -20,7 +19,6 @@ const AppLoader = ({ children }) => {
         dispatch(loadproductsList());
         if (isLoggedIn) {
             dispatch(loadUsersList());
-            dispatch(loadCartList());
         }
     }, []);
 

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductById, updateProduct } from "../../../store/products";
 import SpinerLoader from "../../SpinerLoader";
-import { addInCartBy } from "../../../store/cart";
 import BookMark from "../../common/bookmark";
+import { getUser, updateUser } from "../../../store/users";
 // import PropTypes from 'prop-types'
 
 const ProductCard = () => {
@@ -12,6 +12,7 @@ const ProductCard = () => {
 
     const dispatch = useDispatch();
     const product = useSelector(getProductById(prodId));
+    const user = useSelector(getUser());
 
     const [bookmark, setBookmark] = useState(product?.bookmark);
     console.log("bookmark", bookmark);
@@ -23,9 +24,14 @@ const ProductCard = () => {
     };
 
     const handleClickPay = (data) => {
-        dispatch(
-            addInCartBy({ prodId: data._id, count: 1, price: data.price })
-        );
+        const newUser = {
+            ...user,
+            purchases: [
+                ...user.purchases,
+                { prodId: data._id, count: 1, price: data.price }
+            ]
+        };
+        dispatch(updateUser(newUser));
     };
     if (product) {
         return (

@@ -2,22 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { paginate } from "../../../utils/paginate";
 import CartProduct from "./cartProduct";
-import {
-    getCartLoadingStatus,
-    getShopList,
-    loadCartList,
-    removeProdCart
-} from "../../../store/cart";
-import SpinerLoader from "../../SpinerLoader";
 import SortBy from "../SortBy";
 import Pagination from "../pagination";
 import CardPay from "./CardPay";
+import { getUser, updateUser } from "../../../store/users";
+import SpinerLoader from "../../SpinerLoader";
 
 const ShopingCarts = () => {
     const dispatch = useDispatch();
-    const shopStatus = useSelector(getCartLoadingStatus());
-    const shopList = useSelector(getShopList());
-
+    const user = useSelector(getUser());
+    const shopList = user?.purchases;
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 3;
 
@@ -52,8 +46,8 @@ const ShopingCarts = () => {
     };
 
     useEffect(() => {
-        if (!shopStatus) {
-            dispatch(loadCartList());
+        if (!shopList) {
+            dispatch(getUser());
         }
     }, [shopList?.length]);
 
@@ -62,67 +56,76 @@ const ShopingCarts = () => {
     };
 
     const handleDelete = (id) => {
-        dispatch(removeProdCart(id));
+        const newShopList = shopList.filter((el) => el._id !== id);
+        const newUser = { ...user, purchases: newShopList };
+        dispatch(updateUser(newUser));
     };
-    if (shopStatus) return <SpinerLoader />;
 
     const productCrop = paginate(sort, currentPage, pageSize);
-
+    console.log("shopList", shopList);
     const count = shopList?.length;
+    if (productCrop) {
+        return (
+            <div>
+                <section className="py-5 h-custom">
+                    <div className="container">
+                        <div className="row d-flex justify-content-center align-items-center h-100">
+                            <div className="col">
+                                <div className="card">
+                                    <div className="card-body p-4">
+                                        <div className="row">
+                                            <div className="col-lg-7">
+                                                <h5>
+                                                    <a
+                                                        href="/"
+                                                        className="text-body"
+                                                    >
+                                                        <i className="fas fa-long-arrow-alt-left me-2"></i>
+                                                        Back to Main Page
+                                                    </a>
+                                                </h5>
+                                                <hr />
 
-    return (
-        <div>
-            <section className="py-5 h-custom">
-                <div className="container">
-                    <div className="row d-flex justify-content-center align-items-center h-100">
-                        <div className="col">
-                            <div className="card">
-                                <div className="card-body p-4">
-                                    <div className="row">
-                                        <div className="col-lg-7">
-                                            <h5>
-                                                <a
-                                                    href="/"
-                                                    className="text-body"
-                                                >
-                                                    <i className="fas fa-long-arrow-alt-left me-2"></i>
-                                                    Back to Main Page
-                                                </a>
-                                            </h5>
-                                            <hr />
-
-                                            <SortBy
-                                                num={shopList?.length}
-                                                onSort={handleSort}
-                                                label="Shoping cart"
-                                            />
-
-                                            {shopList
-                                                ? productCrop?.map((prod) => (
-                                                      <CartProduct
-                                                          key={prod.prodId}
-                                                          item={prod}
-                                                          onClick={handleDelete}
-                                                      />
-                                                  ))
-                                                : "Корзина пуста"}
-                                            <div className="d-flex justify-content-center">
-                                                <Pagination
-                                                    itemsCount={
-                                                        count || currentPage
-                                                    }
-                                                    pageSize={pageSize}
-                                                    currentPage={currentPage}
-                                                    onPageChange={
-                                                        handlePageChange
-                                                    }
+                                                <SortBy
+                                                    onSort={handleSort}
+                                                    label="Shoping cart"
                                                 />
-                                            </div>
-                                        </div>
 
-                                        <div className="col-lg-5">
-                                            <div className="card bg-primary text-white rounded-3">
-                                                <CardPay />
+                                                {shopList?.length !== 0 ? (
+                                                    productCrop.map((prod) => (
+                                                        <CartProduct
+                                                            key={prod._id}
+                                                            item={prod}
+                                                            onClick={
+                                                                handleDelete
+                                                            }
+                                                        />
+                                                    ))
+                                                ) : (
+                                                    <p className="text-center">
+                                                        Корзина пуста
+                                                    </p>
+                                                )}
+                                                <div className="d-flex justify-content-center">
+                                                    <Pagination
+                                                        itemsCount={
+                                                            count || currentPage
+                                                        }
+                                                        pageSize={pageSize}
+                                                        currentPage={
+                                                            currentPage
+                                                        }
+                                                        onPageChange={
+                                                            handlePageChange
+                                                        }
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className="col-lg-5">
+                                                <div className="card bg-primary text-white rounded-3">
+                                                    <CardPay />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -130,10 +133,10 @@ const ShopingCarts = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        </div>
-    );
+                </section>
+            </div>
+        );
+    } else return <SpinerLoader />;
 };
 
 export default ShopingCarts;

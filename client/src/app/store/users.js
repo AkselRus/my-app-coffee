@@ -58,9 +58,6 @@ const usersSlice = createSlice({
             state.dataLoaded = null;
         },
         userUpdate: (state, action) => {
-            // const elIndex = state.entities.findIndex(
-            //     (u) => u._id === action.payload._id
-            // );
             state.entities = action.payload;
         },
         authRequested: (state) => {
@@ -134,22 +131,23 @@ export const signUp = (payload) => async (dispatch) => {
 };
 
 export const updateUser = (payload) => async (dispatch) => {
-    console.log("updateUser", payload);
     try {
         const { content } = await userService.update(payload);
         dispatch(userUpdate(content));
-        history.push(`/users/${content._id}`);
     } catch (error) {
         dispatch(userUpdateFailed(error.message));
     }
 };
 
-// export const deleteUser = (userId) => (state) => {
-//     if (state.user.entities) {
-//         return state.user.entities.filter((user) => user._id !== userId);
-//     }
-// };
-export const getUser = () => (state) => state.user.entities;
+export const deleteUser = () => async () => {
+    try {
+        await userService.delete();
+        console.log("deleteUser");
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const getUser = () => (state) => state.user?.entities;
 
 export const getUsersLoadingStatus = () => (state) => state.user.isLoading;
 export const getIsLoggedIn = () => (state) => state.user.isLoggedIn;

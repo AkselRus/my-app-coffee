@@ -9,15 +9,17 @@ const Carusel = () => {
         "https://irkutsk.bonodono.ru/upload/iblock/5cd/5cdcc6208beae5f7a26debf8acbf98a5.jpg",
         "https://i.ytimg.com/vi/FcMhCHurUI4/maxresdefault.jpg"
     ];
-
+    // style={{ height: "500px" }}
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
     };
     return (
         <Carousel activeIndex={index} onSelect={handleSelect}>
-            <Carousel.Item style={{ height: "500px" }}>
+            <Carousel.Item>
                 <img
                     className="d-block w-100"
+                    height="500px"
+                    width="100%"
                     src={dataCarousel[0]}
                     alt="First slide"
                 />
@@ -29,9 +31,11 @@ const Carusel = () => {
                     </p>
                 </Carousel.Caption>
             </Carousel.Item>
-            <Carousel.Item style={{ height: "500px" }}>
+            <Carousel.Item>
                 <img
                     className="d-block w-100"
+                    height="500px"
+                    width="100%"
                     src={dataCarousel[1]}
                     alt="Second slide"
                 />
@@ -43,9 +47,11 @@ const Carusel = () => {
                     </p>
                 </Carousel.Caption>
             </Carousel.Item>
-            <Carousel.Item style={{ height: "500px" }}>
+            <Carousel.Item>
                 <img
                     className="d-block w-100"
+                    height="500px"
+                    width="100%"
                     src={dataCarousel[2]}
                     alt="Second slide"
                 />

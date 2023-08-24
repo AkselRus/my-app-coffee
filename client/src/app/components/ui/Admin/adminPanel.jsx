@@ -64,10 +64,16 @@ const AdminPanel = () => {
                                                     <div className="card-body">
                                                         <div className="justify-content-between">
                                                             <div className="flex-row align-items-center">
-                                                                <div>
+                                                                <div className="">
                                                                     <input
                                                                         type="text"
                                                                         name="searchProd"
+                                                                        style={{
+                                                                            boxShadow:
+                                                                                "none",
+                                                                            outline:
+                                                                                "none"
+                                                                        }}
                                                                         placeholder="Search..."
                                                                         className="form-control"
                                                                         onChange={
@@ -77,17 +83,19 @@ const AdminPanel = () => {
                                                                             searchProd
                                                                         }
                                                                     />
-                                                                    <ProductTable
-                                                                        products={
-                                                                            productCrop
-                                                                        }
-                                                                        onSort={
-                                                                            handleSort
-                                                                        }
-                                                                        selectedSort={
-                                                                            sortBy
-                                                                        }
-                                                                    />
+                                                                    <div className="p-1">
+                                                                        <ProductTable
+                                                                            products={
+                                                                                productCrop
+                                                                            }
+                                                                            onSort={
+                                                                                handleSort
+                                                                            }
+                                                                            selectedSort={
+                                                                                sortBy
+                                                                            }
+                                                                        />
+                                                                    </div>
                                                                     <div className="d-flex justify-content-center">
                                                                         <Paginate
                                                                             itemsCount={

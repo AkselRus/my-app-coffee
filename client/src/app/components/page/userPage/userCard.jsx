@@ -1,30 +1,29 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getUser } from "../../../store/users";
 
-const UserCard = ({ user }) => {
+const UserCard = () => {
     const navigate = useNavigate();
     const currentUser = useSelector(getUser());
     const handleClick = () => {
-        navigate("/edit");
+        navigate(`/user/${currentUser._id}/edit`);
     };
     return (
         <div className="card mb-3">
             <div className="card-body">
-                {currentUser._id === user._id && (
-                    <button
+                {currentUser && (
+                    <a
                         className="position-absolute top-0 end-0 btn btn-light btn-sm"
                         onClick={handleClick}
                     >
                         <i className="bi bi-gear"></i>
-                    </button>
+                    </a>
                 )}
 
                 <div className="d-flex flex-column align-items-center text-center position-relative">
                     <img
-                        src={user.image}
+                        src={currentUser.image}
                         className="rounded-circle"
                         width="250"
                     />
@@ -32,9 +31,6 @@ const UserCard = ({ user }) => {
             </div>
         </div>
     );
-};
-UserCard.propTypes = {
-    user: PropTypes.object
 };
 
 export default UserCard;

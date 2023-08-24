@@ -1,10 +1,15 @@
 import React from "react";
-import { Container, Navbar, Nav } from "react-bootstrap";
+import {
+    Container,
+    Navbar,
+    Nav,
+    ListGroup,
+    ListGroupItem
+} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getIsLoggedIn, getUser, logOut } from "../../../store/users";
 import { Offcanvas } from "bootstrap";
-import { getShopList } from "../../../store/cart";
 import { getListBookMark } from "../../../store/products";
 
 const navBar = () => {
@@ -12,11 +17,10 @@ const navBar = () => {
     const handleLoguot = () => dispatch(logOut());
     const user = useSelector(getUser());
     const isLoggedIn = useSelector(getIsLoggedIn());
-    const shopList = useSelector(getShopList());
-    console.log("isLoggedIn", isLoggedIn);
+    const shopList = user?.purchases;
+    // console.log("isLoggedIn", isLoggedIn);
 
     const listBookmark = useSelector(getListBookMark());
-    console.log("listBookmark", listBookmark);
 
     const offcanvasElementList = Array.prototype.slice.call(
         document.querySelectorAll(".offcanvas")
@@ -38,7 +42,15 @@ const navBar = () => {
                 {
                     <>
                         <div className="offcanvas-header">
-                            <h5 id="offcanvasRightLabel">{user?.name}</h5>
+                            <div className="d-flex justify-content-between align-items-end">
+                                <img
+                                    src={user?.image}
+                                    className="img-fluid border rounded-circle"
+                                    width="45"
+                                    alt="Avatar"
+                                />
+                                <h4 id="offcanvasRightLabel">{user?.name}</h4>
+                            </div>
                             <button
                                 type="button"
                                 className="btn-close text-reset"
@@ -48,18 +60,23 @@ const navBar = () => {
                             ></button>
                         </div>
                         <div className="offcanvas-body">
-                            List BookMark
+                            <h4>Отложенные товары</h4>
                             {listBookmark && (
-                                <ul>
+                                <ListGroup>
                                     {listBookmark.map((el) => (
-                                        <li
+                                        <ListGroupItem
                                             key={el._id}
-                                            className="list-group-item"
+                                            className="d-flex justify-content-between align-items-center mb-2"
                                         >
                                             {el.name}
-                                        </li>
+                                            <button
+                                                type="button"
+                                                className="btn-close text-reset ms-auto"
+                                                aria-label="Закрыть"
+                                            ></button>
+                                        </ListGroupItem>
                                     ))}
-                                </ul>
+                                </ListGroup>
                             )}
                         </div>
                     </>
@@ -107,6 +124,7 @@ const navBar = () => {
                                             )}
                                         </h3>
                                     </Link>
+
                                     <Link
                                         className="me-2"
                                         data-bs-toggle="offcanvas"
@@ -115,6 +133,14 @@ const navBar = () => {
                                     >
                                         <h3>
                                             <i className="bi bi-heart"></i>
+                                        </h3>
+                                    </Link>
+                                    <Link
+                                        className="me-2"
+                                        to={`/user/${user?._id}`}
+                                    >
+                                        <h3>
+                                            <i className="bi bi-person-circle"></i>
                                         </h3>
                                     </Link>
                                     <Link

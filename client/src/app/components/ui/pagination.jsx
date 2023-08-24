@@ -19,6 +19,10 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
                     >
                         <button
                             className="page-link"
+                            style={{
+                                boxShadow: "none",
+                                outline: "none"
+                            }}
                             onClick={() => onPageChange(page)}
                         >
                             {page}

@@ -21,15 +21,18 @@ const Product = ({ data, onClick }) => {
     if (categori && data) {
         return (
             <>
-                <div className=" col-md-4 p-2">
+                <div className="col-md-4 p-2">
                     <div
-                        className="card m-2 h-100 shadow bg-body-tertiary "
-                        style={{ minWidth: "100%" }}
+                        className="card m-2 shadow bg-body-tertiary"
+                        style={{ minWidth: "100%", maxHeight: "385px" }}
                     >
-                        <BookMark
-                            status={data.bookmark}
-                            onClick={toogleBookmark}
-                        />
+                        {isLoggedIn && (
+                            <BookMark
+                                status={data.bookmark}
+                                onClick={toogleBookmark}
+                            />
+                        )}
+
                         <img
                             src={data.image}
                             className="card-img-top"
@@ -37,27 +40,26 @@ const Product = ({ data, onClick }) => {
                             alt="icon"
                         />
 
-                        <div className="card-body p-2 m-2">
-                            <h5 className="">
+                        <div className="card-body">
+                            <h5>
                                 <a
-                                    className="nav-link text-dark p-0"
+                                    className="nav-link text-dark"
                                     href={`/product/${data._id}`}
                                 >
                                     {data.name}
                                 </a>
                             </h5>
-
-                            <div className="d-flex align-items-end">
-                                <h5>{`${Number(data.price).toFixed(2)} ₽`}</h5>
-                                {isLoggedIn && (
-                                    <a
-                                        onClick={() => onClick(data)}
-                                        className="btn btn-outline-success ms-auto"
-                                    >
-                                        <i className="bi bi-cart"></i>
-                                    </a>
-                                )}
-                            </div>
+                        </div>
+                        <div className="d-flex align-items-end m-2 p-2">
+                            <h5>{`${Number(data.price).toFixed(2)} ₽`}</h5>
+                            {isLoggedIn && (
+                                <a
+                                    onClick={() => onClick(data)}
+                                    className="btn btn-outline-success ms-auto"
+                                >
+                                    <i className="bi bi-cart"></i>
+                                </a>
+                            )}
                         </div>
                     </div>
                 </div>

@@ -17,36 +17,35 @@ const CartProduct = ({ item, onClick }) => {
                                 <div>
                                     <img
                                         src={prod.image}
-                                        className="img-fluid rounded-3"
+                                        className="img-fluid rounded"
+                                        style={{ maxWidth: 100 }}
                                         alt="Image product"
-                                        width="80"
-                                        height="90"
                                     />
                                 </div>
-                                <div className="p-2 text-wrap">
-                                    <h5>{prod.name}</h5>
-                                    <p className="small mb-2">
-                                        {category &&
-                                            `Категория: ${category.name}`}
-                                    </p>
-                                </div>
-                                <div className="p-2 mt-4">
-                                    <p className="small mb-0">
-                                        {category &&
-                                            `Количество: ${item.count}`}
-                                    </p>
-                                </div>
-                                <div className="p-2 mt-4">
-                                    <p className="small mb-0">
-                                        {`Стоимость ${prod.price}`}
-                                    </p>
+                                <div>
+                                    <div className="p-2">
+                                        <h5>{prod.name}</h5>
+                                    </div>
+                                    <div className="d-flex flex-row">
+                                        <p className="small p-1">
+                                            {category &&
+                                                `Категория: ${category.name}`}
+                                        </p>
+                                        <p className="small p-1">
+                                            {category &&
+                                                `Количество: ${item.count}`}
+                                        </p>
+                                        <p className="small p-1">
+                                            {`Стоимость ${prod.price}`}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                             <div className="position-absolute top-0 end-0">
                                 <a
                                     type="button"
                                     className="p-3 mb-0"
-                                    onClick={() => onClick(prod._id)}
+                                    onClick={() => onClick(item._id)}
                                 >
                                     <i
                                         className="btn btn-danger btn-sm bi bi-trash text-white"

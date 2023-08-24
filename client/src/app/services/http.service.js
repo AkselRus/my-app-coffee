@@ -13,6 +13,9 @@ http.interceptors.request.use(
         const expiresDate = localStorageService.getTokenExpiresDate();
         const refreshToken = localStorageService.getRefreshToken();
         const isExpired = refreshToken && expiresDate < Date.now();
+        console.log("refreshToken", refreshToken);
+        console.log("isExpired", isExpired);
+        console.log("expiresDate", expiresDate);
 
         if (configFile.isFireBase) {
             const containSlash = /\/$/gi.test(config.url);
@@ -38,6 +41,8 @@ http.interceptors.request.use(
             }
         } else {
             if (isExpired) {
+                localStorage.clear();
+                window.location.assign("/auth/login");
                 // const { data } = await httpAuth.post("token", {
                 //     grant_type: "refresh_token",
                 //     refresh_token: refreshToken
