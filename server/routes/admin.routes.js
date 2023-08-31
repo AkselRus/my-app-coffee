@@ -40,8 +40,7 @@ router.put("/", auth, async (req, res) => {
 router.delete("/:prodId", auth, async (req, res) => {
     try {
         const { prodId } = req.params;
-        const removedUser = await User.findByIdAndDelete(prodId);
-        console.log("removedUser", removedUser);
+        await User.findByIdAndDelete(prodId);
     } catch (error) {
         res.status(500).json({
             massage: "На сервере произошла ошибка. Попробуйте позже",

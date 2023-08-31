@@ -49,9 +49,7 @@ router.post("/signUp", [
                 ...req.body,
                 password: hashedPassword,
             });
-            console.log("newUser", newUser);
             const tokens = tokenService.generate({ _id: newUser._id });
-            console.log("tokens", tokens);
 
             await tokenService.save(newUser._id, tokens.refreshToken);
 
@@ -80,11 +78,8 @@ router.post("/signInWithPassword", [
             }
 
             const { email, password } = req.body;
-            console.log("email", email);
-            console.log("password", password);
 
             const existingUser = await User.findOne({ email });
-            console.log("existingUser", existingUser);
 
             if (!existingUser) {
                 return res.status(400).send({

@@ -1,11 +1,11 @@
 const express = require("express");
 const chalk = require("chalk");
 const User = require("../models/User");
-// const auth = require("../middleware/auth.middleware");
+const auth = require("../middleware/auth.middleware");
 const router = express.Router({ mergeParams: true });
 
 router
-    .patch("/:userId", async (req, res) => {
+    .patch("/:userId", auth, async (req, res) => {
         try {
             const { userId } = req.params;
 
@@ -27,7 +27,7 @@ router
             });
         }
     })
-    .get("/:userId", async (req, res) => {
+    .get("/:userId", auth, async (req, res) => {
         try {
             const { userId } = req.params;
             if (userId) {
@@ -42,19 +42,18 @@ router
             });
         }
     });
-// router.delete("/:userId", async (req, res) => {
-//     try {
-//         const { userId } = req.params;
-//         const removedUser = await User.findByIdAndDelete(userId);
-//         console.log("removedUser", removedUser);
-//     } catch (error) {
-//         res.status(500).json({
-//             massage: "На сервере произошла ошибка. Попробуйте позже",
-//         });
-//     }
-// });
+router.delete("/:userId", auth, async (req, res) => {
+    try {
+        const { userId } = req.params;
+        await User.findByIdAndDelete(userId);
+    } catch (error) {
+        res.status(500).json({
+            massage: "На сервере произошла ошибка. Попробуйте позже",
+        });
+    }
+});
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
     try {
         const list = await User.find();
         res.status(200).send(list);
