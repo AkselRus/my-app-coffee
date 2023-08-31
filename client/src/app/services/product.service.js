@@ -18,7 +18,6 @@ const productService = {
         return data;
     },
     deleteProd: async (payload) => {
-        console.log(payload);
         const { data } = await httpService.delete(productEndpoint + payload);
         return data;
     }

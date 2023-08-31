@@ -57,18 +57,6 @@ const ProductTable = ({ products, onSort, selectedSort }) => {
             name: "Цена",
             component: (prod) => <div className="text-center">{prod.price}</div>
         },
-        // image: {
-        //     // path: "image",
-        //     name: "Фото",
-        //     component: (products) => (
-        //         <button
-        //             onClick={() => console.log(products.id)}
-        //             className="btn btn-secondary"
-        //         >
-        //             <i className="bi bi-camera"></i>
-        //         </button>
-        //     )
-        // },
         update: {
             name: "Изменить",
             component: (products) => (

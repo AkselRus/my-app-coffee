@@ -24,12 +24,10 @@ const cartService = {
         return data;
     },
     create: async (payload) => {
-        console.log(payload);
         const { data } = await httpService.put(
             userEndpoint + purchases,
             payload
         );
-        console.log("data", data);
 
         return data;
     },

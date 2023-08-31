@@ -7,6 +7,7 @@ import MainCategory from "./mainCategory";
 import SpinerLoader from "../../SpinerLoader";
 import Carusel from "../../Carusel";
 import { getUser, updateUser } from "../../../store/users";
+import Search from "../Search";
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -19,9 +20,9 @@ const MainPage = () => {
         if (searchProd !== "") setSearchProd("");
         setSelectedCateg(item);
     };
-    // const handleSearchProd = ({ target }) => {
-    //     setSearchProd(target.value);
-    // };
+    const handleSearchProd = ({ target }) => {
+        setSearchProd(target.value);
+    };
     const clearFilter = () => {
         setSelectedCateg();
     };
@@ -50,18 +51,17 @@ const MainPage = () => {
 
         // const newProducts = selectedCateg ? filteredProducts : products;
         const count = filteredProducts?.length;
-        console.log("filteredProducts", filteredProducts);
 
         return (
             <>
                 <main>
                     {/* menu */}
                     <div className="row">
-                        {/* <Search
+                        <Carusel />
+                        <Search
                             handleChange={handleSearchProd}
                             serch={searchProd}
-                        /> */}
-                        <Carusel />
+                        />
                         <MainCategory
                             label="Категории"
                             selectedCateg={selectedCateg}
@@ -75,12 +75,6 @@ const MainPage = () => {
                             count={count}
                             searchProd={searchProd}
                         />
-                        {/* <div className="d-flex justify-content-center"></div> */}
-
-                        {/*
-                    <div className="my-3 p-3 bg-body text-white rounded shadow-sm">
-                        <h6 className="border-bottom pb-2 mb-0">Предложения</h6>
-                    </div> */}
                     </div>
                 </main>
             </>

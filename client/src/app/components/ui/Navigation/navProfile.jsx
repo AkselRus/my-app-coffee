@@ -5,7 +5,6 @@ import { getUser, logOut } from "../../../store/users";
 function NavProfile() {
     const dispatch = useDispatch();
     const currentUser = useSelector(getUser());
-    console.log("currentUser", currentUser);
     const [isOpen, setOpen] = useState(false);
     const toggleMenu = () => {
         setOpen((prevState) => !prevState);

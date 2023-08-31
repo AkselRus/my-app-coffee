@@ -4,15 +4,13 @@ import Product from "./product";
 import SpinerLoader from "../../SpinerLoader";
 import SortBy from "../../ui/SortBy";
 
-const ProductList = ({ data, handleClic, setCateg, count }) => {
+const ProductList = ({ data, handleClic }) => {
     const [sort, setSort] = useState(data);
     useEffect(() => {
         setSort(data);
     }, [data]);
 
     const handleSort = (params) => {
-        console.log(params);
-
         if (params === "max") {
             const sortData = data.toSorted(
                 (a, b) => parseFloat(b.price) - parseFloat(a.price)
@@ -61,8 +59,6 @@ const ProductList = ({ data, handleClic, setCateg, count }) => {
 };
 ProductList.propTypes = {
     data: PropTypes.array,
-    handleClic: PropTypes.func,
-    setCateg: PropTypes.func,
-    count: PropTypes.number
+    handleClic: PropTypes.func
 };
 export default ProductList;

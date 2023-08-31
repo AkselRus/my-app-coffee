@@ -8,7 +8,7 @@ import SpinerLoader from "../../SpinerLoader";
 
 const UserPage = () => {
     const dispatch = useDispatch();
-    const select = useSelector(deleteUser());
+    // const select = useSelector(deleteUser());
     const user = useSelector(getUser());
     const [show, setShow] = useState(false);
 
@@ -30,9 +30,9 @@ const UserPage = () => {
         return newDate;
     }
 
-    const handleUserDelete = () => {
+    const handleUserDelete = async () => {
+        await deleteUser();
         setShow((prev) => !prev);
-        dispatch(select);
         dispatch(logOut());
     };
 

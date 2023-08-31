@@ -19,7 +19,6 @@ import ProductCard from "./components/page/products/ProductCard";
 import ProductEditPage from "./components/page/products/productEditPage";
 
 function App() {
-    console.log(localStorage);
     return (
         <div className="container">
             <AppLoader>

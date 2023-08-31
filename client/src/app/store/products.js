@@ -77,9 +77,7 @@ export function createProduct(payload) {
     return async function (dispatch) {
         dispatch(productCreateRequested());
         try {
-            console.log("payload", payload);
             const { content } = await productService.create(payload);
-            console.log("content", content);
             dispatch(productCreated(content));
             window.location.assign("/admin");
         } catch (error) {
@@ -88,7 +86,6 @@ export function createProduct(payload) {
     };
 }
 export const updateProduct = (payload) => async (dispatch) => {
-    console.log("payload", payload);
     try {
         const { content } = await productService.update(payload);
         dispatch(productUpdate(content));

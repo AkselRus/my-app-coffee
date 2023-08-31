@@ -121,7 +121,6 @@ export const signUp = (payload) => async (dispatch) => {
     dispatch(authRequested());
     try {
         const data = await authService.register(payload);
-        console.log("SignUp", data);
         localStorageService.setTokens(data);
         dispatch(authRequestedSuccess({ userId: data.userId }));
         window.location.assign("/");
@@ -139,15 +138,14 @@ export const updateUser = (payload) => async (dispatch) => {
     }
 };
 
-export const deleteUser = () => async () => {
+export const deleteUser = async () => {
     try {
         await userService.delete();
-        console.log("deleteUser");
     } catch (error) {
         console.log(error);
     }
 };
-export const getUser = () => (state) => state.user?.entities;
+export const getUser = () => (state) => state.user.entities;
 
 export const getUsersLoadingStatus = () => (state) => state.user.isLoading;
 export const getIsLoggedIn = () => (state) => state.user.isLoggedIn;

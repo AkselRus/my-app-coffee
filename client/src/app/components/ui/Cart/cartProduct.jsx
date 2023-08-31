@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { getProductById } from "../../../store/products";
 import { getCategoryById } from "../../../store/categories";
+import CountCart from "./countCart";
 
 const CartProduct = ({ item, onClick }) => {
     const prod = useSelector(getProductById(item.prodId));
     const category = useSelector(getCategoryById(prod?.categories));
+
     if (prod) {
         return (
             <div>
@@ -31,10 +33,9 @@ const CartProduct = ({ item, onClick }) => {
                                             {category &&
                                                 `Категория: ${category.name}`}
                                         </p>
-                                        <p className="small p-1">
-                                            {category &&
-                                                `Количество: ${item.count}`}
-                                        </p>
+                                        <div className="small p-1">
+                                            <CountCart data={item} />
+                                        </div>
                                         <p className="small p-1">
                                             {`Стоимость ${prod.price}`}
                                         </p>

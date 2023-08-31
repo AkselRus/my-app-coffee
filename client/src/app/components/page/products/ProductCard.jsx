@@ -15,7 +15,6 @@ const ProductCard = () => {
     const user = useSelector(getUser());
 
     const [bookmark, setBookmark] = useState(product?.bookmark);
-    console.log("bookmark", bookmark);
 
     const toogleBookmark = async () => {
         setBookmark((prev) => !prev);

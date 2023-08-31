@@ -21,8 +21,6 @@ const ShopingCarts = () => {
     }, [shopList]);
 
     const handleSort = (params) => {
-        console.log(params);
-
         if (params === "max") {
             const sortData = shopList.toSorted(
                 (a, b) => parseFloat(b.price) - parseFloat(a.price)
@@ -62,7 +60,6 @@ const ShopingCarts = () => {
     };
 
     const productCrop = paginate(sort, currentPage, pageSize);
-    console.log("shopList", shopList);
     const count = shopList?.length;
     if (productCrop) {
         return (

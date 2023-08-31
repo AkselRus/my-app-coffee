@@ -18,7 +18,6 @@ const navBar = () => {
     const user = useSelector(getUser());
     const isLoggedIn = useSelector(getIsLoggedIn());
     const shopList = user?.purchases;
-    // console.log("isLoggedIn", isLoggedIn);
 
     const listBookmark = useSelector(getListBookMark());
 

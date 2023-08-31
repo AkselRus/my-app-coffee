@@ -7,14 +7,19 @@ import { updateProduct } from "../../../store/products";
 import BookMark from "../../common/bookmark";
 import SpinerLoader from "../../SpinerLoader";
 import { getIsLoggedIn } from "../../../store/users";
+// import { getUserId } from "../../../services/localStorage.service";
 
 const Product = ({ data, onClick }) => {
     const dispatch = useDispatch();
+    // const userId = getUserId();
     const isLoggedIn = useSelector(getIsLoggedIn());
     const categori = useSelector(getCategoryById(data?.categories));
 
     const toogleBookmark = async () => {
-        const newObject = await { ...data, bookmark: !data.bookmark };
+        const newObject = await {
+            ...data,
+            bookmark: !data.bookmark
+        };
         dispatch(updateProduct(newObject));
     };
 

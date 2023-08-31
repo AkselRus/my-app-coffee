@@ -30,7 +30,6 @@ const AddProduct = () => {
     const dispatch = useDispatch();
     const { prodId } = useParams();
     const [selectedImage, setSelectedImage] = useState(null);
-    console.log(selectedImage);
 
     const productEditPage = useSelector(getProductById(prodId));
     const categories = useSelector(getCategories());
@@ -101,19 +100,16 @@ const AddProduct = () => {
         if (!isValid) return;
         if (selectedImage) {
             const newData = await { ...data, image: selectedImage[0].fileUrl };
-            console.log("newData", newData);
             dispatch(createProduct(newData));
-            // window.location.assign("/admin");
+            window.location.assign("/admin");
         } else dispatch(createProduct(data));
     };
     const handleSubmitUpdate = async (e) => {
         e.preventDefault();
-        console.log("handleSubmitUpdate");
         if (selectedImage) {
             const newData = await { ...data, image: selectedImage[0].fileUrl };
-            console.log("newData", newData);
             dispatch(updateProduct(newData));
-            // window.location.assign("/admin");
+            window.location.assign("/admin");
         } else dispatch(updateProduct(data));
     };
     return (
