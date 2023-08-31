@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { validator } from "../../utils/validator";
 import TextField from "../common/form/textField";
-// import { nanoid } from "nanoid";
 import { useDispatch } from "react-redux";
-// import SelectField from "../common/form/selectField";
 import RadioField from "../common/form/radioField";
-// import MultiSelectField from "../common/form/multiSelectField";
 import CheckBoxField from "../common/form/checkBoxField";
 import { signUp } from "../../store/users";
 import { Link } from "react-router-dom";
@@ -13,7 +10,6 @@ import { Link } from "react-router-dom";
 const RegisterForm = () => {
     const dispatch = useDispatch();
     const [data, setData] = useState({
-        // id: nanoid(),
         email: "",
         password: "",
         sex: "male",
@@ -126,15 +122,7 @@ const RegisterForm = () => {
                     onChange={handleChange}
                     error={errors.password}
                 />
-                {/* <SelectField
-                label="Выбери свою профессию"
-                defaultOption="Choose..."
-                options={professionsList}
-                name="profession"
-                onChange={handleChange}
-                value={data.profession}
-                error={errors.profession}
-            /> */}
+
                 <RadioField
                     options={[
                         { name: "Male", value: "male" },
@@ -146,13 +134,7 @@ const RegisterForm = () => {
                     onChange={handleChange}
                     label="Выберите ваш пол"
                 />
-                {/* <MultiSelectField
-                options={qualitiesList}
-                onChange={handleChange}
-                defaultValue={data.qualities}
-                name="qualities"
-                label="Выберите ваши качества"
-            /> */}
+
                 <CheckBoxField
                     value={data.licence}
                     onChange={handleChange}
