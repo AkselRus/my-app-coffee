@@ -21,7 +21,7 @@ export const MyUploadButton = ({ setFiles }) => (
     >
         {({ onClick }) => (
             <button className="btn btn-primary m-2" onClick={onClick}>
-                Upload
+                Загрузить
             </button>
         )}
     </UploadButton>

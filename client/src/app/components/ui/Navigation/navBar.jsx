@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     Container,
     Navbar,
@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getIsLoggedIn, getUser, logOut } from "../../../store/users";
 import { Offcanvas } from "bootstrap";
-import { getListBookMark } from "../../../store/products";
+import { getListBookMark, updateProduct } from "../../../store/products";
 
 const navBar = () => {
     const dispatch = useDispatch();
@@ -20,6 +20,18 @@ const navBar = () => {
     const shopList = user?.purchases;
 
     const listBookmark = useSelector(getListBookMark());
+    const [bookmark, setBookmark] = useState();
+    useEffect(() => {
+        setBookmark(listBookmark);
+    }, []);
+
+    const handleClickDelete = (id) => {
+        if (isLoggedIn && id) {
+            const prod = bookmark.filter((p) => p._id === id);
+            const newProd = { ...prod[0], bookmark: false };
+            dispatch(updateProduct(newProd));
+        }
+    };
 
     const offcanvasElementList = Array.prototype.slice.call(
         document.querySelectorAll(".offcanvas")
@@ -70,6 +82,9 @@ const navBar = () => {
                                             {el.name}
                                             <button
                                                 type="button"
+                                                onClick={() =>
+                                                    handleClickDelete(el._id)
+                                                }
                                                 className="btn-close text-reset ms-auto"
                                                 aria-label="Закрыть"
                                             ></button>
@@ -95,7 +110,7 @@ const navBar = () => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
                             <Link to="/" className="nav-link text-white">
-                                Home
+                                Главная страница
                             </Link>
                         </Nav>
                         <Nav>

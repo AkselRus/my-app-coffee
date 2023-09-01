@@ -78,14 +78,14 @@ const ShopingCarts = () => {
                                                         className="text-body"
                                                     >
                                                         <i className="fas fa-long-arrow-alt-left me-2"></i>
-                                                        Back to Main Page
+                                                        Назад в меню
                                                     </a>
                                                 </h5>
                                                 <hr />
 
                                                 <SortBy
                                                     onSort={handleSort}
-                                                    label="Shoping cart"
+                                                    label="Корзина"
                                                 />
 
                                                 {shopList?.length !== 0 ? (

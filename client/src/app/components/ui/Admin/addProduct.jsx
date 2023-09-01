@@ -117,7 +117,7 @@ const AddProduct = () => {
             <div className="card bg-body text-white">
                 <div className="card-body bg-dark rounded-2">
                     <form onSubmit={prodId ? handleSubmitUpdate : handleSubmit}>
-                        <div className="text-center">Add product</div>
+                        <div className="text-center">Добавить товар</div>
                         <TextField
                             label="Название товара"
                             name="name"
@@ -144,7 +144,7 @@ const AddProduct = () => {
                         />
                         <SelectField
                             label="Выберите категорию товара"
-                            defaultOption="Choose..."
+                            defaultOption="Выбрать..."
                             options={categoriesList}
                             name="categories"
                             onChange={handleChange}
@@ -178,7 +178,7 @@ const AddProduct = () => {
                                     className="btn btn-danger m-2"
                                     onClick={() => setSelectedImage(null)}
                                 >
-                                    Remove
+                                    Удалить
                                 </button>
                             </div>
                         )}

@@ -29,28 +29,17 @@ const Total = () => {
         shopList && (
             <>
                 <div className="d-flex justify-content-between">
-                    <p className="mb-2">Subtotal</p>
+                    <p className="mb-2">Итоговая стоимость</p>
                     <p className="mb-2">{`${sum.toFixed(2)} ₽`}</p>
                 </div>
-
-                {/* <div className="d-flex justify-content-between">
-                <p className="mb-2">Shipping</p>
-                <p className="mb-2">$20.00</p>
-            </div>
-
-            <div className="d-flex justify-content-between mb-4">
-                <p className="mb-2">Total(Incl. taxes)</p>
-                <p className="mb-2">$4818.00</p>
-            </div> */}
                 <div className="d-flex justify-content-end">
                     <a
                         type="button"
                         className="btn btn-info"
                         onClick={handleFinish}
                     >
-                        <span>Pay</span>
+                        <span>Оплатить</span>
                     </a>
-                    {/* <p className="mb-2">{`${sum.toFixed(2)} ₽`}</p> */}
                 </div>
             </>
         )

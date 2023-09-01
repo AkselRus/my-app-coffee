@@ -37,7 +37,7 @@ const ProductList = ({ data, handleClic }) => {
         <main className="col-md-8 ms-sm-auto col-lg-10 px-md-4 ">
             <div className="align-items-center pt-3 pb-2 mb-3">
                 <div className="table-responsive">
-                    <SortBy onSort={handleSort} label="Menu" />
+                    <SortBy onSort={handleSort} label="Меню" />
 
                     {data ? (
                         <div className="row w-100 ">

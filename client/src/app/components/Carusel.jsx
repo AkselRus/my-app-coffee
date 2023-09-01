@@ -5,7 +5,7 @@ import Carousel from "react-bootstrap/Carousel";
 const Carusel = () => {
     const [index, setIndex] = useState(0);
     const dataCarousel = [
-        "https://w-dog.ru/wallpapers/4/19/364561336480358/zavtrak-kofe-chashka-parizh-franciya-notr-dam-sobor-pruzhina-kruassan-dzhem-notr-dam.jpg",
+        "https://i.mycdn.me/i?r=AzEPZsRbOZEKgBhR0XGMT1RkzwyzvqlJTPKwBlG6vrpKlqaKTM5SRkZCeTgDn6uOyic",
         "https://irkutsk.bonodono.ru/upload/iblock/5cd/5cdcc6208beae5f7a26debf8acbf98a5.jpg",
         "https://i.ytimg.com/vi/FcMhCHurUI4/maxresdefault.jpg"
     ];
@@ -13,13 +13,13 @@ const Carusel = () => {
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
     };
+
     return (
         <Carousel activeIndex={index} onSelect={handleSelect}>
             <Carousel.Item>
                 <img
                     className="d-block w-100"
-                    height="500px"
-                    width="100%"
+                    height="600px"
                     src={dataCarousel[0]}
                     alt="First slide"
                 />
@@ -34,8 +34,7 @@ const Carusel = () => {
             <Carousel.Item>
                 <img
                     className="d-block w-100"
-                    height="500px"
-                    width="100%"
+                    height="600px"
                     src={dataCarousel[1]}
                     alt="Second slide"
                 />
@@ -50,8 +49,7 @@ const Carusel = () => {
             <Carousel.Item>
                 <img
                     className="d-block w-100"
-                    height="500px"
-                    width="100%"
+                    height="600px"
                     src={dataCarousel[2]}
                     alt="Second slide"
                 />

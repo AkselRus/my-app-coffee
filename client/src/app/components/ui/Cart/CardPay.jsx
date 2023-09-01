@@ -1,7 +1,6 @@
 import React from "react";
 import { getUser } from "../../../store/users";
 
-import CardType from "./CardType";
 import Total from "./Total";
 import { useSelector } from "react-redux";
 
@@ -11,7 +10,7 @@ const CardPay = () => {
     return (
         <div className="card-body">
             <div className="d-flex justify-content-between align-items-center mb-4">
-                <h5 className="">Card details</h5>
+                <h5 className="">Карта покупателя</h5>
                 <img
                     src={currentUser?.image}
                     className="img-fluid rounded-3"
@@ -19,8 +18,6 @@ const CardPay = () => {
                     alt="Avatar"
                 />
             </div>
-
-            <CardType />
 
             <form className="mt-4">
                 <div className="form-outline form-white mb-4">
@@ -32,7 +29,7 @@ const CardPay = () => {
                         placeholder="Cardholder's Name"
                     />
                     <label className="form-label" htmlFor="typeName">
-                        Cardholders Name
+                        Имя владельца карты
                     </label>
                 </div>
 
@@ -47,7 +44,7 @@ const CardPay = () => {
                         maxLength="19"
                     />
                     <label className="form-label" htmlFor="typeText">
-                        Card Number
+                        Номер карты
                     </label>
                 </div>
 
@@ -65,7 +62,7 @@ const CardPay = () => {
                                 maxLength="7"
                             />
                             <label className="form-label" htmlFor="typeExp">
-                                Expiration
+                                Срок действия
                             </label>
                         </div>
                     </div>
@@ -84,7 +81,7 @@ const CardPay = () => {
                                 className="form-label"
                                 htmlFor="typeTextPass"
                             >
-                                Cvv
+                                Код
                             </label>
                         </div>
                     </div>

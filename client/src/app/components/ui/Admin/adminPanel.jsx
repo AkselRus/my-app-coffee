@@ -74,7 +74,7 @@ const AdminPanel = () => {
                                                                             outline:
                                                                                 "none"
                                                                         }}
-                                                                        placeholder="Search..."
+                                                                        placeholder="Поиск..."
                                                                         className="form-control"
                                                                         onChange={
                                                                             handleSearchProd
@@ -83,7 +83,7 @@ const AdminPanel = () => {
                                                                             searchProd
                                                                         }
                                                                     />
-                                                                    <div className="p-1">
+                                                                    <div className="p-3">
                                                                         <ProductTable
                                                                             products={
                                                                                 productCrop

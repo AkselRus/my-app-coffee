@@ -36,15 +36,17 @@ const CountCart = ({ data }) => {
     return (
         <form>
             <div className="d-flex flex-row align-items-center">
-                <div>Количиство: </div>
+                <div className="m-2">
+                    <b>Количество: </b>
+                </div>
                 <input
                     type="button"
                     onClick={() => decrementCount()}
                     value="-"
-                    className="cursor-pointer btn btn-secondary btn-sm"
+                    className="cursor-pointer btn btn-secondary"
                 />
-                <div className="">
-                    <span id="hide" ref={span}>
+                <div className="border py-2 rounded m-1">
+                    <span id="hide" ref={span} className="m-2 p-2">
                         {count}
                     </span>
                 </div>
@@ -52,7 +54,7 @@ const CountCart = ({ data }) => {
                     type="button"
                     onClick={() => incrementCount()}
                     value="+"
-                    className="cursor-pointer btn btn-secondary btn-sm"
+                    className="cursor-pointer btn btn-secondary"
                 />
             </div>
         </form>

@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getProductById, updateProduct } from "../../../store/products";
 import SpinerLoader from "../../SpinerLoader";
 import BookMark from "../../common/bookmark";
-import { getUser, updateUser } from "../../../store/users";
+import { getIsLoggedIn, getUser, updateUser } from "../../../store/users";
 // import PropTypes from 'prop-types'
 
 const ProductCard = () => {
     const { prodId } = useParams();
+    const navigate = useNavigate();
 
+    const isLoggedIn = useSelector(getIsLoggedIn());
+    console.log(isLoggedIn);
     const dispatch = useDispatch();
     const product = useSelector(getProductById(prodId));
     const user = useSelector(getUser());
@@ -23,14 +26,19 @@ const ProductCard = () => {
     };
 
     const handleClickPay = (data) => {
-        const newUser = {
-            ...user,
-            purchases: [
-                ...user.purchases,
-                { prodId: data._id, count: 1, price: data.price }
-            ]
-        };
-        dispatch(updateUser(newUser));
+        if (!isLoggedIn) {
+            navigate("/auth/login");
+        }
+        if (user) {
+            const newUser = {
+                ...user,
+                purchases: [
+                    ...user.purchases,
+                    { prodId: data._id, count: 1, price: data.price }
+                ]
+            };
+            dispatch(updateUser(newUser));
+        } else return null;
     };
     if (product) {
         return (
@@ -51,10 +59,12 @@ const ProductCard = () => {
                                 <div className="card-body p-2">
                                     <h3 className="card-title">
                                         {product.name}
-                                        <BookMark
-                                            status={bookmark}
-                                            onClick={toogleBookmark}
-                                        />
+                                        {isLoggedIn && (
+                                            <BookMark
+                                                status={bookmark}
+                                                onClick={toogleBookmark}
+                                            />
+                                        )}
                                     </h3>
                                     <p className="card-text">
                                         {product.description}

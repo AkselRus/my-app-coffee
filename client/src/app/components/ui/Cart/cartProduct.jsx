@@ -25,20 +25,24 @@ const CartProduct = ({ item, onClick }) => {
                                     />
                                 </div>
                                 <div>
-                                    <div className="p-2">
-                                        <h5>{prod.name}</h5>
+                                    <div className="py-2 px-2">
+                                        <h5>
+                                            <b>{prod.name}</b>
+                                        </h5>
                                     </div>
-                                    <div className="d-flex flex-row">
-                                        <p className="small p-1">
-                                            {category &&
-                                                `Категория: ${category.name}`}
-                                        </p>
-                                        <div className="small p-1">
+                                    <div className="d-flex">
+                                        <div className="py-2 px-2">
+                                            <b>Категория : </b>
+                                            {category && `${category.name}`}
+                                        </div>
+                                        <div className="">
                                             <CountCart data={item} />
                                         </div>
-                                        <p className="small p-1">
-                                            {`Стоимость ${prod.price}`}
-                                        </p>
+                                        <div className="py-2 px-2">
+                                            <b>Цена : </b>
+                                            {`${prod.price * item.count} `}
+                                            <b>₽</b>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

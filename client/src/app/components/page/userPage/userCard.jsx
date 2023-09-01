@@ -22,7 +22,10 @@ const UserCard = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     useEffect(() => {
         if (selectedImage) {
-            const newUser = { ...currentUser, image: selectedImage[0].fileUrl };
+            const newUser = {
+                ...currentUser,
+                image: selectedImage[0]?.fileUrl
+            };
             dispatch(updateUser(newUser));
         }
     }, [selectedImage]);
